@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  契约依据：01-契约.md §14.2 — 全部中文文案集中于此，禁止在 Kotlin 源码里硬编码中文字符串。
+  纪律：本文件 LF、无 BOM；文案只增不改，改文案 = 一次评审（合规文案要能统一审）。
+-->
+<resources>
+    <!-- 通用 -->
+    <string name="action_back">返回</string>
+    <string name="action_in_progress">动作中</string>
+
+    <!-- 动效演示页 -->
+    <string name="motion_gallery_title">动效演示</string>
+    <string name="motion_gallery_section_level">动效档位</string>
+    <string name="motion_gallery_section_recipes">十条微交互配方</string>
+    <string name="motion_gallery_trigger">触发</string>
+    <string name="motion_gallery_locked">系统已开启「移除动画」，档位锁定为静态，不提供反向覆盖入口</string>
+    <string name="motion_level_full">完整</string>
+    <string name="motion_level_reduced">精简</string>
+    <string name="motion_level_minimal">静态</string>
+    <string name="motion_gallery_section_haptics">触觉</string>
+    <string name="haptics_on">开启</string>
+    <string name="haptics_off">关闭</string>
+    <string name="gallery_clicks_prefix">点击次数</string>
+    <string name="gallery_due_count_prefix">待复习条数</string>
+
+    <!-- 五档模式名（契约 §5 的 mode 值） -->
+    <string name="mode_quick">快速</string>
+    <string name="mode_standard">标准</string>
+    <string name="mode_deep">深度</string>
+    <string name="mode_review">复习</string>
+    <string name="mode_boost">提分</string>
+
+    <!-- 十条配方名（顺序同契约 §8.4） -->
+    <string name="recipe_01_press_rebound">按压回弹</string>
+    <string name="recipe_02_mode_indicator">模式指示滑动</string>
+    <string name="recipe_03_chip_bounce">选项 chips 弹跳</string>
+    <string name="recipe_04_submit_three_dot">提交态三点加载</string>
+    <string name="recipe_05_wrong_shake">答错摇头</string>
+    <string name="recipe_06_correct_stroke">答对描边</string>
+    <string name="recipe_07_thinking">等待思考</string>
+    <string name="recipe_08_top_toast">顶部轻提示</string>
+    <string name="recipe_09_review_breath">待复习呼吸点</string>
+    <string name="recipe_10_mastery_growth">掌握度增长</string>
+
+    <!-- 配方用到的状态文案 -->
+    <string name="thinking_short">思考中…</string>
+    <string name="thinking_long">模型正在思考…</string>
+    <string name="answer_correct">答对了</string>
+    <string name="answer_wrong">答错了</string>
+    <string name="toast_import_success">导入成功</string>
+    <string name="toast_profile_saved">画像已记录</string>
+    <string name="review_due_prefix">今日待复习</string>
+
+    <!-- 指标名（progress_card metric 三值） -->
+    <string name="metric_mastery">掌握度</string>
+    <string name="metric_plan">计划进度</string>
+    <string name="metric_score">提分</string>
+</resources>
