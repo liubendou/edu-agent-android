@@ -1,0 +1,101 @@
+{
+  "_source": "01-契约.md §6 八段上下文装配与字节稳定",
+  "_note": "budget_tokens 契约 §6 只给了三段总量（前缀 ≤6k / 断点后 ≤6k / 输出 ≤2k），未给分段预算，故分段置 null，总量放在 budgets 里。",
+  "breakpoint_after": 3,
+  "budgets": {
+    "prefix_tokens": 6000,
+    "postfix_tokens": 6000,
+    "output_tokens": 2000,
+    "profile_tokens": 800,
+    "psychology_inject_min": 3,
+    "psychology_inject_max": 8
+  },
+  "segments": [
+    {
+      "order": 1,
+      "key": "系统约束",
+      "code_enum": "SYSTEM",
+      "freq": "版本级",
+      "is_prefix": true,
+      "budget_tokens": null,
+      "stable_rules": [
+        "禁止时间戳/日期/UUID/会话ID/用户名/请求ID/时区等随会话变化的内容",
+        "固定顺序 + 固定 JSON key 顺序，序列化器不得在会话内重新排序",
+        "使用预渲染的 raw 字符串"
+      ]
+    },
+    {
+      "order": 2,
+      "key": "心理学库（索引）",
+      "code_enum": "PSY_INDEX",
+      "freq": "版本级",
+      "is_prefix": true,
+      "budget_tokens": null,
+      "stable_rules": [
+        "断点前仅 79 行索引（id | 名称 | 适用档 | 一句话原理）",
+        "禁止时间戳/日期/UUID/会话ID/用户名/请求ID/时区等随会话变化的内容",
+        "固定顺序 + 固定 JSON key 顺序",
+        "使用预渲染的 raw 字符串"
+      ]
+    },
+    {
+      "order": 3,
+      "key": "A2UI 目录",
+      "code_enum": "CATALOG",
+      "freq": "版本级",
+      "is_prefix": true,
+      "budget_tokens": null,
+      "stable_rules": [
+        "必须携带 catalog_version，且与端侧编译期常量一致（第 9 步断言，红线 R-T8）",
+        "禁止时间戳/日期/UUID/会话ID/用户名/请求ID/时区等随会话变化的内容",
+        "固定顺序 + 固定 JSON key 顺序",
+        "使用预渲染的 raw 字符串"
+      ]
+    },
+    {
+      "order": 4,
+      "key": "技能模板",
+      "code_enum": "SKILL",
+      "freq": "选档/技能时变",
+      "is_prefix": false,
+      "budget_tokens": null,
+      "stable_rules": []
+    },
+    {
+      "order": 5,
+      "key": "用户画像",
+      "code_enum": "PROFILE",
+      "freq": "会话间变",
+      "is_prefix": false,
+      "budget_tokens": null,
+      "stable_rules": []
+    },
+    {
+      "order": 6,
+      "key": "任务指令",
+      "code_enum": "TASK",
+      "freq": "每回合变",
+      "is_prefix": false,
+      "budget_tokens": null,
+      "stable_rules": []
+    },
+    {
+      "order": 7,
+      "key": "历史",
+      "code_enum": "HISTORY",
+      "freq": "每回合追加",
+      "is_prefix": false,
+      "budget_tokens": null,
+      "stable_rules": []
+    },
+    {
+      "order": 8,
+      "key": "按需检索",
+      "code_enum": "RETRIEVAL",
+      "freq": "命中才注入",
+      "is_prefix": false,
+      "budget_tokens": null,
+      "stable_rules": []
+    }
+  ]
+}

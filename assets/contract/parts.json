@@ -1,0 +1,173 @@
+{
+  "_source": "01-契约.md §4 十六个零件（目录 v1）",
+  "_note": "payload_optional 契约 §4 未逐件给出，统一留空数组；text_limit 仅契约 §4「硬规则」点名的四种零件为 1200，其余为 null（未设上限）。",
+  "catalog_version": 1,
+  "parts": [
+    {
+      "no": 1,
+      "type": "explain_card",
+      "name_zh": "讲解卡",
+      "purpose": "概念讲解、例题拆解",
+      "payload_required": ["title", "blocks"],
+      "payload_optional": [],
+      "minimal_static": "同静态排版，无逐字",
+      "text_limit": 1200
+    },
+    {
+      "no": 2,
+      "type": "keypoint_card",
+      "name_zh": "要点卡",
+      "purpose": "结构化要点/速览",
+      "payload_required": ["title", "points"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": 1200
+    },
+    {
+      "no": 3,
+      "type": "compare_card",
+      "name_zh": "对比卡",
+      "purpose": "易混概念对照",
+      "payload_required": ["title", "columns", "rows"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": 1200
+    },
+    {
+      "no": 4,
+      "type": "quiz_card",
+      "name_zh": "题卡",
+      "purpose": "选择/填空/主观",
+      "payload_required": ["stem", "kind", "options", "answer", "explain"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": null
+    },
+    {
+      "no": 5,
+      "type": "verdict_card",
+      "name_zh": "判题卡",
+      "purpose": "判对错 + 解析",
+      "payload_required": ["result", "user_answer", "answer", "explain"],
+      "payload_optional": [],
+      "minimal_static": "图标+文案终态，无描边动画",
+      "text_limit": null
+    },
+    {
+      "no": 6,
+      "type": "error_cause_card",
+      "name_zh": "错因卡",
+      "purpose": "错因归因与纠正",
+      "payload_required": ["cause", "evidence", "fix"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": null
+    },
+    {
+      "no": 7,
+      "type": "map_card",
+      "name_zh": "地图卡",
+      "purpose": "知识地图/结构图",
+      "payload_required": ["title", "nodes", "edges"],
+      "payload_optional": [],
+      "minimal_static": "静态图",
+      "text_limit": null
+    },
+    {
+      "no": 8,
+      "type": "timeline_card",
+      "name_zh": "时间线卡",
+      "purpose": "历史线/过程线",
+      "payload_required": ["title", "events"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": null
+    },
+    {
+      "no": 9,
+      "type": "table_card",
+      "name_zh": "表卡",
+      "purpose": "公式/数据/词汇表",
+      "payload_required": ["title", "headers", "rows"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": 1200
+    },
+    {
+      "no": 10,
+      "type": "plan_panel",
+      "name_zh": "计划面板",
+      "purpose": "长短期学习计划",
+      "payload_required": ["horizon", "goals", "tasks"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": null
+    },
+    {
+      "no": 11,
+      "type": "progress_card",
+      "name_zh": "进度卡",
+      "purpose": "掌握度/计划进度/提分曲线",
+      "payload_required": ["title", "series", "metric"],
+      "payload_optional": [],
+      "minimal_static": "数值直显，无增长动画",
+      "text_limit": null
+    },
+    {
+      "no": 12,
+      "type": "review_card",
+      "name_zh": "复习卡",
+      "purpose": "队列驱动的复习项",
+      "payload_required": ["item_id", "prompt", "due_at", "reps"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": null
+    },
+    {
+      "no": 13,
+      "type": "diagnose_card",
+      "name_zh": "诊断卡",
+      "purpose": "摸底与薄弱项诊断",
+      "payload_required": ["title", "weak"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": null
+    },
+    {
+      "no": 14,
+      "type": "profile_confirm_card",
+      "name_zh": "画像确认卡",
+      "purpose": "「我记住了这些」编辑确认",
+      "payload_required": ["entries"],
+      "payload_optional": [],
+      "minimal_static": "同静态，必须保留可改可删",
+      "text_limit": null
+    },
+    {
+      "no": 15,
+      "type": "material_card",
+      "name_zh": "资料卡",
+      "purpose": "OCR/识图结果、资料摘要",
+      "payload_required": ["source_kind", "summary", "fields", "uncertain"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": null
+    },
+    {
+      "no": 16,
+      "type": "tool_card",
+      "name_zh": "工具卡",
+      "purpose": "联网搜索结果与来源",
+      "payload_required": ["query", "results"],
+      "payload_optional": [],
+      "minimal_static": "同静态",
+      "text_limit": null
+    }
+  ],
+  "hard_rules": [
+    "explain_card / keypoint_card / compare_card / table_card 正文不得超过 1200 字（长内容拆成多张同型零件）",
+    "tool_card 的每条 results 必须有 source；无来源不得渲染（红线 R-C1/R-C2）",
+    "quiz_card 与 verdict_card 必须成对出现在同一档同一回合（answer 由端侧保管，判分前不下发 UI）",
+    "零件内部不得携带任何动效/时长/曲线字段（红线 R-T10）"
+  ]
+}

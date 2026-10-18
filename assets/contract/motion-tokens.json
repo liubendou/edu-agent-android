@@ -1,0 +1,56 @@
+{
+  "_source": "01-契约.md §8 动效契约（冻结，三类库落地）",
+  "_note": "dampingRatio 按 Compose 语义直译原文档的 damping 值（同名同量级），禁止改用 cubic-bezier 近似。",
+  "durations": {
+    "micro": 120,
+    "base": 200,
+    "slow": 600,
+    "draw": 800
+  },
+  "springs": {
+    "snappy": { "stiffness": 380, "dampingRatio": 30, "usage": "按钮、chips、pill" },
+    "default": { "stiffness": 260, "dampingRatio": 30, "usage": "页面进出、卡片" },
+    "soft": { "stiffness": 260, "dampingRatio": 26, "usage": "toast、面板" }
+  },
+  "levels": [
+    { "id": "full", "behavior": "全部动效", "trigger": "默认" },
+    { "id": "reduced", "behavior": "去位移与循环，仅保留 ≤120ms 的透明度/颜色变化", "trigger": "用户设置，或低端机自动降档（内存/帧率判定）" },
+    { "id": "minimal", "behavior": "全部 duration = 0，退化为静态/瞬时，不是隐藏", "trigger": "系统「移除动画」→ 强制 minimal（读 LocalMotionDurationScale.current == 0f），不给用户反向覆盖入口" }
+  ],
+  "recipes": [
+    { "no": 1, "name": "按压回弹", "scene": "发送/生成/上传/新对话", "spec": "scale 0.97 + snappy", "minimal_fallback": "无动效" },
+    { "no": 2, "name": "模式指示滑动", "scene": "五档切换（首屏三 chip）", "spec": "选中底片旧位→新位（空间连续，MotionLayout），200ms", "minimal_fallback": "静态底片" },
+    { "no": 3, "name": "选项 chips 弹跳", "scene": "题数 3/5/8、筛选", "spec": "选中 scale [1,1.12,1] 一次性 + snappy；按压 0.94", "minimal_fallback": "只留填充色变化" },
+    { "no": 4, "name": "提交态三点加载", "scene": "生成测验/导入资料/识图", "spec": "三点 y [0,-4,0] repeat，相位 i*0.14，0.5s/循环；按钮文案换「动作中」并禁用", "minimal_fallback": "三点改透明度呼吸" },
+    { "no": 5, "name": "答错摇头", "scene": "判题答错、校验失败", "spec": "内容层独立容器 x [0,-9,9,-6,6,-2,0] 420ms ease-out", "minimal_fallback": "x 恒 0 + 红色文案" },
+    { "no": 6, "name": "答对描边", "scene": "判分行", "spec": "圆 pathLength 0→1（600ms），对勾延迟 160ms（800ms），线宽 1.5~1.8", "minimal_fallback": "直接满描边静态" },
+    { "no": 7, "name": "等待思考", "scene": "模型首字前", "spec": "占位条（compose-shimmer）+ 光标呼吸；>8s 必须明示「模型正在思考」；计时高频直改文本", "minimal_fallback": "静态「思考中…」" },
+    { "no": 8, "name": "顶部轻提示", "scene": "导入成功/画像已记录", "spec": "顶部滑入 12~28px + 透明度，soft，3.2s 自动退场；居中用外层容器，不靠 transform 位移", "minimal_fallback": "只做淡入淡出" },
+    { "no": 9, "name": "待复习呼吸点", "scene": "今日待复习 > 0", "spec": "外圈呼吸扩散 + 静态实心点", "minimal_fallback": "不渲染呼吸层" },
+    { "no": 10, "name": "掌握度增长", "scene": "掌握度环/进度条/提分曲线（Vico）", "spec": "数值变化插值增长 400~600ms ease-out，不来回摆动", "minimal_fallback": "直接跳到目标值" }
+  ],
+  "tau": {
+    "quick": 0.18,
+    "standard": 0.25,
+    "deep": 0.35,
+    "review": 0.15,
+    "boost": 0.30
+  },
+  "taboos": [
+    "数字变化不加弹跳",
+    "长列表只给首屏可见 3~5 项入场",
+    "同屏同时动画元素 ≤ 4（红线 M3）"
+  ],
+  "streaming": {
+    "coarse_smoothing": "按 16ms 帧窗口聚合再下发（消息数降 10~50×），首帧立即下发，结束前必须 flush",
+    "fine_smoothing": "按行/零件匀速消费，rate = clamp(backlog / tau, MIN, MAX)",
+    "entry": "透明度 + 上移 8~12px，base，不用缩放弹出",
+    "raf_rules": [
+      "循环结束条件必须可收敛：积压吐完即收尾",
+      "重入判断只查 frameJob 句柄，不得被长期兜底定时器阻塞",
+      "时间增量必须钳制（上限 0.1s）",
+      "后台时用低频兜底按真实流逝时间推进，必须补发结束回调",
+      "abort/错误结束时立即收尾，仅正常结束走吐完再收尾"
+    ]
+  }
+}

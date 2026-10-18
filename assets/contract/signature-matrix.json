@@ -1,0 +1,51 @@
+{
+  "_source": "01-契约.md §5 技能签名矩阵 + §8.5 五档 tau",
+  "_note": "required_any_of 仅 boost 档使用（诊断卡 或 计划面板）；其余档为空数组。标记不在任何档必需/可选集合内的零件不判废（会被埋点记 unknown_part）。",
+  "modes": [
+    {
+      "mode": "quick",
+      "name_zh": "快速学习",
+      "required": ["keypoint_card", "explain_card"],
+      "optional": ["compare_card", "table_card"],
+      "required_any_of": [],
+      "tau": 0.18
+    },
+    {
+      "mode": "standard",
+      "name_zh": "标准",
+      "required": ["explain_card", "quiz_card", "verdict_card"],
+      "optional": ["keypoint_card", "review_card"],
+      "required_any_of": [],
+      "tau": 0.25
+    },
+    {
+      "mode": "deep",
+      "name_zh": "深度",
+      "required": ["explain_card", "quiz_card", "map_card"],
+      "optional": ["error_cause_card", "compare_card"],
+      "required_any_of": [],
+      "tau": 0.35
+    },
+    {
+      "mode": "review",
+      "name_zh": "复习",
+      "required": ["review_card", "verdict_card"],
+      "optional": ["progress_card"],
+      "required_any_of": [],
+      "tau": 0.15
+    },
+    {
+      "mode": "boost",
+      "name_zh": "提分",
+      "required": ["quiz_card"],
+      "optional": ["progress_card", "error_cause_card", "material_card"],
+      "required_any_of": ["diagnose_card", "plan_panel"],
+      "tau": 0.30
+    }
+  ],
+  "judge_rules": [
+    "命中 = 回合内任一零件的 type 等于该签名；重复出现只算一次",
+    "出现矩阵外的零件不判废，埋点记为 unknown_part",
+    "自由对话兜底回合同样走本矩阵，不得放行无签名回合（除非明确进入 PLAINTEXT 兜底态）"
+  ]
+}
