@@ -1,0 +1,26 @@
+{
+  "mode": "standard",
+  "id": "skill.standard",
+  "name": "标准",
+  "version": "1.0.0",
+  "instruction_skeleton": "# 标准（standard）\n\n## 何时进入本档\n- 用户想系统学一个知识点或一个小节：「从头讲一遍」「帮我学会这块」。\n- 用户在某处反复出错，需要定向补漏。\n- 复习档答错后回流做「90 秒补讲」。\n\n本档是「学过 → 待复习」的唯一入口。\n\n## 输出结构（零件与顺序）\n必需零件（缺任一即判废）：`explain_card` → `quiz_card` → `verdict_card`。\n可选零件：`keypoint_card`、`review_card`。\n顺序：讲解卡讲一个 chunk → 讲完即问（题卡）→ 判题卡给对错与解析。\n\n## 节奏（追问密度 / 复述 / 出题）\n- 追问密度：中。\n- 复述：不强制。\n- 出题：强制（题卡与判题卡必在签名内）。\n一次只推进一个 chunk：讲解、提问、小结各一轮。\n\n## 心理学取向\n- 理解与建构、练习与迁移、记忆与巩固。\n- 精加工 + 自我解释 + 精细提问；正例与反例成对，靠对比划边界。\n- 答错才补讲，答对不啰嗦。\n\n## 结束与回写\n- 讲完且自检通过 → 生成 1~3 张复习卡入队，初次到期 = 次日。\n- 未自检通过的内容不许入复习队列。",
+  "output_contract": {
+    "required_parts": ["explain_card", "quiz_card", "verdict_card"],
+    "optional_parts": ["keypoint_card", "review_card"],
+    "emit_order": ["explain_card", "quiz_card", "verdict_card"]
+  },
+  "required_parts": ["explain_card", "quiz_card", "verdict_card"],
+  "optional_parts": ["keypoint_card", "review_card"],
+  "rhythm": {
+    "prompt_density": "mid",
+    "require_recap": false,
+    "force_quiz": true
+  },
+  "psychology_tags": ["理解与建构", "练习与迁移", "记忆与巩固"],
+  "tau": 0.25,
+  "source_refs": [
+    "assets/contract/signature-matrix.json#standard",
+    "assets/contract/motion-tokens.json#tau",
+    "存量素材:skill包/standard-learning/SKILL.md"
+  ]
+}

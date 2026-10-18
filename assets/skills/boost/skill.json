@@ -1,0 +1,26 @@
+{
+  "mode": "boost",
+  "id": "skill.boost",
+  "name": "提分",
+  "version": "1.0.0",
+  "instruction_skeleton": "# 提分（boost）\n\n## 何时进入本档\n- 用户有明确考试目标、要冲刺提分。\n- 要管错题 / 刷题节奏，或考前要调状态与应试策略。\n\n提分 = 检索练习 × 间隔重复 × 反馈闭环 × 靶向刷题 × 状态管理；核心是多测 + 快改 + 只补漏。\n\n## 长短期分叉（首次只问一次，之后自动判定）\n- 首次进入提分入口时，**只问一次**长短期问询；结果写入画像（DataStore 键 `boost_horizon` ∈ `SHORT` / `LONG`），之后**自动判定**，不再重复询问。\n- **长期（LONG）**：无考试日 **或** 距考试日 > 30 天。\n  骨架：先诊断现状与目标 → 目标拆解到周计划 → 每周执行 + 错因归因 → 阶段自测回写掌握度。\n- **短期（SHORT）**：距**用户自填**考试日 ≤ 30 天。\n  骨架：先诊断薄弱项 → 锁定高频考点 → 逐点突击 → 计时训练 + 应试策略。\n- 常量 `SHORT_WINDOW_DAYS = 30`；考试日历 v1 不做，日期由用户手填。\n\n## 输出结构（零件与顺序）\n必需零件（缺任一即判废）：（`diagnose_card` **或** `plan_panel`）+ `quiz_card`——诊断卡与计划面板二选一，或项在前。\n可选零件：`progress_card`、`error_cause_card`、`material_card`。\n顺序：诊断卡 / 计划面板先行（定靶）→ 再由题卡靶向练。\n\n## 节奏（追问密度 / 复述 / 出题）\n- 追问密度：中。\n- 复述：要求。\n- 出题：强制。\n先诊断再定计划、按计划推进。\n\n## 心理学取向\n- 练习与迁移、元认知、动机与情绪、习惯与节奏。\n- 提分闭环：诊断 → 定靶 → 靶向练 → 快速反馈 → 误差修正 → 间隔复测。\n- 不制造焦虑：焦虑与表现是倒 U 型，目标是调到中等，不做施压式话术。\n\n## 结束与回写\n- 错题按「不会 / 会用错 / 审题 / 计算」四类归因，写错因并回课本补那一处。\n- 按 1-2-4-7-15 天复测；连续两次用新题做对才算过关；熟练项移出错题本。",
+  "output_contract": {
+    "required_parts": ["diagnose_card|plan_panel", "quiz_card"],
+    "optional_parts": ["progress_card", "error_cause_card", "material_card"],
+    "emit_order": ["diagnose_card|plan_panel", "quiz_card"]
+  },
+  "required_parts": ["diagnose_card|plan_panel", "quiz_card"],
+  "optional_parts": ["progress_card", "error_cause_card", "material_card"],
+  "rhythm": {
+    "prompt_density": "mid",
+    "require_recap": true,
+    "force_quiz": true
+  },
+  "psychology_tags": ["练习与迁移", "元认知", "动机与情绪", "习惯与节奏"],
+  "tau": 0.30,
+  "source_refs": [
+    "assets/contract/signature-matrix.json#boost",
+    "assets/contract/motion-tokens.json#tau",
+    "存量素材:skill包/score-boost/SKILL.md"
+  ]
+}

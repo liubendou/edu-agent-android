@@ -1,0 +1,26 @@
+{
+  "mode": "review",
+  "id": "skill.review",
+  "name": "复习",
+  "version": "1.0.0",
+  "instruction_skeleton": "# 复习（review）\n\n## 何时进入本档\n- 到了算法指定的到期日（遗忘临界点）。\n- 用户主动说「复习一下 / 抽我一下」。\n- 队列驱动：用户不选内容，系统按到期顺序推送。\n\n## 输出结构（零件与顺序）\n必需零件（缺任一即判废）：`review_card` → `verdict_card`。\n可选零件：`progress_card`。\n顺序：先给复习项（只给正面问题）→ 用户先答 → 揭晓答案 → 判题卡给三档反馈。\n\n## 节奏（追问密度 / 复述 / 出题）\n- 追问密度：低。\n- 复述：不要求。\n- 出题：不额外出题；复习卡本身就是提取练习。\n一张卡 10~30 秒，一轮 3~6 张，一轮 3~6 分钟。\n\n## 心理学取向\n- 记忆与巩固、元认知。\n- 间隔重复 + 提取练习 + 适度困难；禁止「先看答案再点头」。\n\n## 结束与回写\n- 三档反馈：对 / 错 / 有点模糊。对 → 稳定度升、间隔拉长；错 / 模糊 → 间隔缩短并回流标准档补讲。\n- 复习失败自动拉起补讲，补完重新入队。\n- 不主动推送，靠首屏「进入即见计划」承担召回。",
+  "output_contract": {
+    "required_parts": ["review_card", "verdict_card"],
+    "optional_parts": ["progress_card"],
+    "emit_order": ["review_card", "verdict_card"]
+  },
+  "required_parts": ["review_card", "verdict_card"],
+  "optional_parts": ["progress_card"],
+  "rhythm": {
+    "prompt_density": "low",
+    "require_recap": false,
+    "force_quiz": false
+  },
+  "psychology_tags": ["记忆与巩固", "元认知"],
+  "tau": 0.15,
+  "source_refs": [
+    "assets/contract/signature-matrix.json#review",
+    "assets/contract/motion-tokens.json#tau",
+    "存量素材:skill包/review/SKILL.md"
+  ]
+}

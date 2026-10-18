@@ -1,0 +1,26 @@
+{
+  "mode": "quick",
+  "id": "skill.quick",
+  "name": "快速学习",
+  "version": "1.0.0",
+  "instruction_skeleton": "# 快速学习（quick）\n\n## 何时进入本档\n- 用户第一次接触某个知识点或板块，说「先给我个大概」「这是什么」「先搭个框架」。\n- 临考或临用前需要快速唤醒已学内容。\n- 用户明确表示「只要看懂，不求会算」。\n\n不在本档做的事：不布置高难度提取、不做长间隔复习、不追求一次讲透——这些交给标准档 / 深度档 / 复习档。\n\n## 输出结构（零件与顺序）\n必需零件（缺任一即判废）：`keypoint_card` → `explain_card`。\n可选零件：`compare_card`、`table_card`。\n顺序：先给要点速览，再用讲解卡把要点逐个讲清；最多再补一张对比卡或表卡收口。\n\n## 节奏（追问密度 / 复述 / 出题）\n- 追问密度：低，几乎不追问。\n- 复述：不要求。\n- 出题：不出题。\n一回合只走「要点 → 讲解」一小段，回合短、卡片流。\n\n## 心理学取向\n- 记忆与巩固、理解与建构。\n- 先搭框架、组块化降负荷：先让用户知道「这块就三件事」，再逐个展开。\n- 开局只做「认得出」级别的低门槛自检，避免首次提取失败造成挫败感。\n\n## 结束与回写\n- 不生成复习卡、不进复习队列（快速档不产生欠账）。\n- 结束时只给一条明确的下一步建议（升到标准档，或留在本档 + 复习档兜底），不列菜单。",
+  "output_contract": {
+    "required_parts": ["keypoint_card", "explain_card"],
+    "optional_parts": ["compare_card", "table_card"],
+    "emit_order": ["keypoint_card", "explain_card"]
+  },
+  "required_parts": ["keypoint_card", "explain_card"],
+  "optional_parts": ["compare_card", "table_card"],
+  "rhythm": {
+    "prompt_density": "low",
+    "require_recap": false,
+    "force_quiz": false
+  },
+  "psychology_tags": ["记忆与巩固", "理解与建构"],
+  "tau": 0.18,
+  "source_refs": [
+    "assets/contract/signature-matrix.json#quick",
+    "assets/contract/motion-tokens.json#tau",
+    "存量素材:skill包/quick-learning/SKILL.md"
+  ]
+}

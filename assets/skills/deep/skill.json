@@ -1,0 +1,26 @@
+{
+  "mode": "deep",
+  "id": "skill.deep",
+  "name": "深度",
+  "version": "1.0.0",
+  "instruction_skeleton": "# 深度（deep）\n\n## 何时进入本档\n- 用户明确说「要学透 / 啃下这块 / 别只讲个大概」。\n- 备考重点板块、专业课难点。\n- 用户要把某个方法练到能独立复现。\n\n单次 20~40 分钟，整个板块跨多天推进。\n\n## 输出结构（零件与顺序）\n必需零件（缺任一即判废）：`explain_card` → `quiz_card` → `map_card`。\n可选零件：`error_cause_card`、`compare_card`。\n顺序：讲解卡 → 变式 / 迁移题卡 → 地图卡收束（板块地图 + 进度环）。\n\n## 节奏（追问密度 / 复述 / 出题）\n- 追问密度：高，多轮追问。\n- 复述：要求（要求复述与费曼式讲解）。\n- 出题：强制（变式题、迁移题、交错练习）。\n逐级推进：记忆 → 理解 → 应用 → 分析，每级配一种题。\n\n## 心理学取向\n- 练习与迁移、元认知、理解与建构。\n- 刻意练习 + 交错 + 变式 + 迁移 + 费曼。\n- 只在用户明确要「吃透」时才上交错与高难度提取。\n\n## 结束与回写\n- 把重点内容升级为变式题 / 迁移题入队，优先级更高。\n- 练不动或概念断了 → 回落标准档做「90 秒补讲」。\n- 所有产出（复现脚本、检查清单、判据卡）都要能回落到复习队列。",
+  "output_contract": {
+    "required_parts": ["explain_card", "quiz_card", "map_card"],
+    "optional_parts": ["error_cause_card", "compare_card"],
+    "emit_order": ["explain_card", "quiz_card", "map_card"]
+  },
+  "required_parts": ["explain_card", "quiz_card", "map_card"],
+  "optional_parts": ["error_cause_card", "compare_card"],
+  "rhythm": {
+    "prompt_density": "high",
+    "require_recap": true,
+    "force_quiz": true
+  },
+  "psychology_tags": ["练习与迁移", "元认知", "理解与建构"],
+  "tau": 0.35,
+  "source_refs": [
+    "assets/contract/signature-matrix.json#deep",
+    "assets/contract/motion-tokens.json#tau",
+    "存量素材:skill包/deep-learning/SKILL.md"
+  ]
+}
