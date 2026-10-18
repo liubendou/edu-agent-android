@@ -51,3 +51,22 @@
 | `landing_module` | 承接该决策的契约 §2 模块名；仅第 1 步自身的决策（D30）落在 `assets/contract` |
 
 **校验**：`.\gradlew contractCheck` 会断言 D1~D33 连续、每项 `landing_step ∈ 1..10`、`landing_module` 非空。
+
+---
+
+## 契约修订记录（第 2 步新增）
+
+> 契约 §0/§14 规定：§4~§14 任何改动 = 一次书面评审 + 版本号 +1 + 同步更新对应任务包与验收索引。
+> 本节登记**经用户书面批准**的修订。D1~D33 的**内容与条数均未改**，故 `decisions.json` 条数仍为 33。
+
+| 修订 | 契约原值 | 修订后 | 批准 | 理由 |
+|---|---|---|---|---|
+| 契约 **§1** SDK 冻结项的 `compileSdk` | 36 | **37** | 用户，2026-10-18（第 2 步汇报后选「选项 A：最小改动」） | 冻结库集（Compose BOM `2026.09.00` → Compose `1.12.1` 等 **19 个 AAR**）的 AAR 元数据硬性要求 `minCompileSdk ≥ 37`，AGP 编译期直接报错且无开关可绕。官方脚手架（同一套版本）用的是 `compileSdk 37 / targetSdk 37`，说明契约把两个互斥值同时冻结了。 |
+
+**未改动项**：`targetSdk 36`、`minSdk 29`（D11 原文）、全部库版本号（版本目录一字未改）。
+
+**影响范围**：仅 `build-logic` 的 `eduagent.android.application` / `eduagent.android.library` 两个约定插件的 `compileSdk` 取值；`assets/contract/decisions.json` 的 D11 只记录 `minSdk 29`，故 `contractCheck` 仍 0 违规。
+
+**详细证据**：见 `docs/03_工程骨架报告.md` §7。
+
+**待用户处置**：控制台侧 `01-契约.md` §1 / §13 D11、`00-总纲.md` §二 表格、`99-记录\99-事件与例外.md` 四项式登记（控制台属智能体只读区，本工程未写回）。

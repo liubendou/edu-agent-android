@@ -114,6 +114,13 @@ chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "ch
 chucker-no-op = { module = "com.github.chuckerteam.chucker:library-no-op", version.ref = "chucker" }
 leakcanary = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanary" }
 
+# --- 构建插件坐标（仅 build-logic 约定插件 compileOnly 使用；版本一律沿用上面已冻结的 ref，不引入新版本）[G] ---
+android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-gradlePlugin = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
+hilt-gradlePlugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
+
 [plugins]
 # 第 1 步由 :tools:contract-check 使用（纯 JVM 校验器，无 Android 依赖）
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
@@ -125,6 +132,13 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt-gradle = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+# --- 本工程约定插件（实现在 build-logic/convention，见 docs/03_工程骨架报告.md；version=unspecified 由 included build 解析）---
+eduagent-android-application = { id = "eduagent.android.application", version = "unspecified" }
+eduagent-android-library = { id = "eduagent.android.library", version = "unspecified" }
+eduagent-android-compose = { id = "eduagent.android.compose", version = "unspecified" }
+eduagent-android-hilt = { id = "eduagent.android.hilt", version = "unspecified" }
+eduagent-kotlin-jvm = { id = "eduagent.kotlin.jvm", version = "unspecified" }
 
 # ---------------------------------------------------------------------------
 # 三类库落地位置（契约 §2 / §8 / §9）

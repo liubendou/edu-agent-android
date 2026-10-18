@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>CyclomaticComplexMethod:ContractValidator.kt$ContractValidator$private fun checkMotionTokens(motion: JsonObject, v: MutableList&lt;ContractViolation&gt;, e: MutableList&lt;String&gt;)</ID>
+    <ID>CyclomaticComplexMethod:ContractValidator.kt$ContractValidator$private fun checkRedlines(redlines: JsonObject, v: MutableList&lt;ContractViolation&gt;, e: MutableList&lt;String&gt;)</ID>
+    <ID>CyclomaticComplexMethod:ContractValidator.kt$ContractValidator$private fun checkSignatureMatrix( matrix: JsonObject, partTypes: Set&lt;String&gt;, v: MutableList&lt;ContractViolation&gt;, e: MutableList&lt;String&gt;, )</ID>
+    <ID>MagicNumber:AndroidApplicationConventionPlugin.kt$AndroidApplicationConventionPlugin$29</ID>
+    <ID>MagicNumber:AndroidApplicationConventionPlugin.kt$AndroidApplicationConventionPlugin$36</ID>
+    <ID>MagicNumber:AndroidApplicationConventionPlugin.kt$AndroidApplicationConventionPlugin$37</ID>
+    <ID>MagicNumber:AndroidLibraryConventionPlugin.kt$AndroidLibraryConventionPlugin$29</ID>
+    <ID>MagicNumber:AndroidLibraryConventionPlugin.kt$AndroidLibraryConventionPlugin$37</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$0.15</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$0.18</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$0.25</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$0.30</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$0.35</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$10</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$120</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$200</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$26</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$260</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$30</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$380</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$4</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$6</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$600</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$7</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$800</ID>
+    <ID>MagicNumber:ContractValidator.kt$ContractValidator$9</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$Regex("""androidx-compose-animation\s*=\s*\{\s*module\s*=\s*"androidx\.compose\.animation:animation"\s*\}""")</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$Regex("""constraintlayoutCompose\s*=\s*"1\.1\.2"[\s\S]*?androidx\.constraintlayout:constraintlayout-compose""")</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$e += "motion-tokens.json：durations=${EXPECTED_DURATIONS.keys.joinToString("/") { k -&gt; "$k=${durations[k]?.jsonPrimitive?.intOrNull()}" }}"</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$e += "motion-tokens.json：tau=${EXPECTED_TAU.keys.joinToString("/") { k -&gt; "$k=${tau[k]?.jsonPrimitive?.contentOrNull()}" }}"</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$val acceptance = readObject(File(contractDir, "acceptance.json"), violations) ?: return ContractReport(evidence, violations)</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$val decisions = readObject(File(contractDir, "decisions.json"), violations) ?: return ContractReport(evidence, violations)</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$val matrix = readObject(File(contractDir, "signature-matrix.json"), violations) ?: return ContractReport(evidence, violations)</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$val motion = readObject(File(contractDir, "motion-tokens.json"), violations) ?: return ContractReport(evidence, violations)</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$val parts = readObject(File(contractDir, "parts.json"), violations) ?: return ContractReport(evidence, violations)</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$val redlines = readObject(File(contractDir, "redlines.json"), violations) ?: return ContractReport(evidence, violations)</ID>
+    <ID>MaxLineLength:ContractValidator.kt$ContractValidator$val segments = readObject(File(contractDir, "context-segments.json"), violations) ?: return ContractReport(evidence, violations)</ID>
+    <ID>ReturnCount:ContractValidator.kt$ContractValidator$fun validate(contractDir: File, versionsToml: File): ContractReport</ID>
+    <ID>TooManyFunctions:ContractValidator.kt$ContractValidator</ID>
+  </CurrentIssues>
+</SmellBaseline>
