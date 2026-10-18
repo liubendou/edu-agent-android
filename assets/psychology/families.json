@@ -1,0 +1,41 @@
+{
+  "version": "1.0.0",
+  "families": [
+    {
+      "name": "记忆与巩固",
+      "covers": "间隔重复、提取练习、精细复述、组块化",
+      "modes": ["review", "quick"],
+      "count": 14
+    },
+    {
+      "name": "理解与建构",
+      "covers": "精细加工、自我解释、双重编码、类比迁移",
+      "modes": ["standard", "deep"],
+      "count": 14
+    },
+    {
+      "name": "练习与迁移",
+      "covers": "交错练习、刻意练习、变式训练、即时反馈",
+      "modes": ["boost", "standard"],
+      "count": 14
+    },
+    {
+      "name": "元认知",
+      "covers": "计划-监控-反思、校准自信、错因归因",
+      "modes": ["deep", "boost"],
+      "count": 13
+    },
+    {
+      "name": "动机与情绪",
+      "covers": "目标设定、胜任感、焦虑调节、成长型思维",
+      "modes": ["quick", "standard", "deep", "review", "boost"],
+      "count": 13
+    },
+    {
+      "name": "习惯与节奏",
+      "covers": "启动摩擦、番茄节奏、微习惯、恢复策略",
+      "modes": ["review", "boost"],
+      "count": 11
+    }
+  ]
+}

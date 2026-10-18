@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "index_line_format": "id | 名称 | 适用档 | 一句话原理",
+  "injection_count": { "min": 3, "max": 8 },
+  "retrieval_input": ["mode", "skill", "user_state", "reverse_filter"],
+  "selection_rules": [
+    "mode 硬过滤：条目 modes 必须含当前档位，不含则整条剔除",
+    "trigger 命中判定：条目 trigger 与当前任务类型或用户状态匹配时才入选",
+    "按当前档位的 conflict_priority_by_mode 族级优先级从高到低逐族取用",
+    "reverse 条件命中则整条剔除，不进入 RETRIEVAL，埋点记 psy_filtered",
+    "同族取用不超过 2 条；总数下限 3、上限 8（不足 3 条时降级取同族次优，仍不足则记 psy_short 埋点）",
+    "同族内并列时按 conflict_priority 升序打破，数值小者优先"
+  ],
+  "reverse_filter_rules": [
+    "reverse 为非空条件式描述，端侧以规则表判定其是否成立",
+    "判定为真的条目必须从 RETRIEVAL 中剔除，并在埋点记 psy_filtered，日志可证（验收 C2.5）",
+    "典型判定：用户已熟练时不注入重复强化类；内容尚未形成初始表征时不注入提取或复习类；焦虑过高时不注入施压类"
+  ],
+  "conflict_priority_by_mode": {
+    "quick": ["理解与建构", "记忆与巩固", "动机与情绪", "习惯与节奏", "练习与迁移", "元认知"],
+    "standard": ["理解与建构", "练习与迁移", "记忆与巩固", "元认知", "动机与情绪", "习惯与节奏"],
+    "deep": ["练习与迁移", "元认知", "理解与建构", "记忆与巩固", "动机与情绪", "习惯与节奏"],
+    "review": ["记忆与巩固", "习惯与节奏", "元认知", "动机与情绪", "理解与建构", "练习与迁移"],
+    "boost": ["练习与迁移", "元认知", "动机与情绪", "记忆与巩固", "理解与建构", "习惯与节奏"]
+  }
+}

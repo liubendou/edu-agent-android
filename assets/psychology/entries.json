@@ -1,0 +1,1515 @@
+{
+    "version":  "1.0.0",
+    "count":  79,
+    "entries":  [
+                    {
+                        "id":  "PSY-001",
+                        "name":  "间隔重复",
+                        "family":  "记忆与巩固",
+                        "principle":  "在遗忘临界点前安排复习，用逐步拉长的间隔对抗遗忘",
+                        "modes":  [
+                                      "review"
+                                  ],
+                        "trigger":  "到期队列出现该条目，或新学内容首次入队",
+                        "injection":  {
+                                          "instruction":  "按到期顺序推送复习项，先让用户自答再揭晓答案，答错只补一个最小必要点",
+                                          "card_structure":  "review_card -> verdict_card(progress_card)",
+                                          "rhythm":  "队列驱动，一轮只处理少量卡片，不追问不复述"
+                                      },
+                        "evidence":  "Ebbinghaus, H. (1885)《记忆：对实验心理学的贡献》遗忘曲线；Cepeda, N. J. et al. (2006) Psychological Bulletin 间隔效应元分析",
+                        "reverse":  "内容尚未形成任何可提取的初始表征时（首次学习）不适用，应先讲解后入队",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-002",
+                        "name":  "提取练习",
+                        "family":  "记忆与巩固",
+                        "principle":  "主动回忆一次胜过被动重读多次",
+                        "modes":  [
+                                      "standard",
+                                      "deep",
+                                      "review"
+                                  ],
+                        "trigger":  "用户已学过该内容但只做过阅读式接触",
+                        "injection":  {
+                                          "instruction":  "先出问题再给答案；答对后不重复讲解，答错才补讲",
+                                          "card_structure":  "quiz_card -> verdict_card(explain_card)",
+                                          "rhythm":  "提问前留一段自答时间，不提前给提示"
+                                      },
+                        "evidence":  "Roediger, H. L. & Karpicke, J. D. (2006) Psychological Science 测试促进学习",
+                        "reverse":  "完全陌生的新知识直接提问会造成连续失败，应先给讲解卡",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-003",
+                        "name":  "精细复述",
+                        "family":  "记忆与巩固",
+                        "principle":  "用自己的话重述要点，把新信息挂到既有知识上",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户刚读完一段要点讲解",
+                        "injection":  {
+                                          "instruction":  "要求用一句话复述刚学要点，随后给出对照",
+                                          "card_structure":  "explain_card -> keypoint_card",
+                                          "rhythm":  "低密度追问，只要求一次复述"
+                                      },
+                        "evidence":  "Craik, F. I. M. & Lockhart, R. S. (1972) Journal of Verbal Learning and Verbal Behavior 加工深度理论",
+                        "reverse":  "临考速览或时间极短时不做复述要求，避免打断节奏",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-004",
+                        "name":  "组块化",
+                        "family":  "记忆与巩固",
+                        "principle":  "把零散信息压成有意义的小组块，降低同时加工量",
+                        "modes":  [
+                                      "quick"
+                                  ],
+                        "trigger":  "用户面对一堆并列而分散的要点",
+                        "injection":  {
+                                          "instruction":  "先归并成三到五个组块再逐个展开，不逐条罗列",
+                                          "card_structure":  "keypoint_card -> explain_card(table_card)",
+                                          "rhythm":  "一回合只推进一个组块"
+                                      },
+                        "evidence":  "Miller, G. A. (1956) Psychological Review 神奇的数字七",
+                        "reverse":  "需要精确到每个符号与步骤的计算内容，不强行组块",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-005",
+                        "name":  "遗忘曲线与复习时机",
+                        "family":  "记忆与巩固",
+                        "principle":  "记忆衰减先快后慢，复习要早、要薄",
+                        "modes":  [
+                                      "review"
+                                  ],
+                        "trigger":  "新学内容即将入队或已入队",
+                        "injection":  {
+                                          "instruction":  "初次到期排得近，随后逐步拉长间隔；每次只取最薄弱项",
+                                          "card_structure":  "review_card -> verdict_card",
+                                          "rhythm":  "一轮只处理少量到期项"
+                                      },
+                        "evidence":  "Ebbinghaus, H. (1885) 遗忘曲线；Murre, J. M. J. & Dros, J. (2015) PLOS ONE 遗忘曲线复现研究",
+                        "reverse":  "严重睡眠不足或情绪崩溃时不硬塞复习，先降低单次量",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-006",
+                        "name":  "分散学习优于集中学习",
+                        "family":  "记忆与巩固",
+                        "principle":  "同样总时长，分散到多天优于一次连刷",
+                        "modes":  [
+                                      "review",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户打算一次性把一节内容全部过完",
+                        "injection":  {
+                                          "instruction":  "把同一内容拆到多天，每天只取一部分并复测",
+                                          "card_structure":  "review_card -> verdict_card(progress_card)",
+                                          "rhythm":  "每天短轮，宁可多天多次"
+                                      },
+                        "evidence":  "Cepeda, N. J. et al. (2006) Psychological Bulletin；Dunlosky, J. et al. (2013) Psychological Science in the Public Interest 学习技术综述",
+                        "reverse":  "临近考试只剩极短时间时允许集中过骨架，但不宣称等价于分散学习",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-007",
+                        "name":  "必要难度",
+                        "family":  "记忆与巩固",
+                        "principle":  "让提取略费劲，长期保持更好",
+                        "modes":  [
+                                      "review",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户已能轻松答对当前难度",
+                        "injection":  {
+                                          "instruction":  "适当提高提取难度（换问法、加干扰），但不超纲",
+                                          "card_structure":  "quiz_card -> verdict_card",
+                                          "rhythm":  "难度上台阶一档一档来，不跳级"
+                                      },
+                        "evidence":  "Bjork, R. A. (1994) 记忆与元记忆的考量；Bjork, E. L. & Bjork, R. A. (2011) 必要难度",
+                        "reverse":  "连续两次失败即退档，避免挫败与放弃",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-008",
+                        "name":  "生成效应",
+                        "family":  "记忆与巩固",
+                        "principle":  "自己生成答案比被动接收记得更牢",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "讲解后需要固化关键结论",
+                        "injection":  {
+                                          "instruction":  "让用户先补全关键步骤或结论，再对照正确答案",
+                                          "card_structure":  "explain_card -> quiz_card -> verdict_card",
+                                          "rhythm":  "先给不完整线索，逐步补全"
+                                      },
+                        "evidence":  "Slamecka, N. J. & Graf, P. (1978) Journal of Experimental Psychology 生成效应",
+                        "reverse":  "完全没有线索的开放式生成会变成猜谜，需给足脚手架",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-009",
+                        "name":  "双重编码",
+                        "family":  "记忆与巩固",
+                        "principle":  "文字与图像双通道编码，记忆更牢",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "内容含结构、流程或空间关系",
+                        "injection":  {
+                                          "instruction":  "要点用表或结构图配合文字同时呈现",
+                                          "card_structure":  "explain_card -> table_card(keypoint_card)",
+                                          "rhythm":  "图文同屏，避免只给图不解释"
+                                      },
+                        "evidence":  "Paivio, A. (1971) 意象与言语过程；Paivio, A. (1986) 心理表象",
+                        "reverse":  "纯符号推导类内容强配图会分散注意，改用语词链",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-010",
+                        "name":  "位置记忆法",
+                        "family":  "记忆与巩固",
+                        "principle":  "把信息挂到熟悉的空间路线上，便于按序提取",
+                        "modes":  [
+                                      "quick",
+                                      "review"
+                                  ],
+                        "trigger":  "需要按固定顺序记住一串要点",
+                        "injection":  {
+                                          "instruction":  "给出一条用户熟悉的空间路线并逐点挂钩",
+                                          "card_structure":  "keypoint_card -> explain_card",
+                                          "rhythm":  "一次挂钩不超过一条路线"
+                                      },
+                        "evidence":  "Yates, F. A. (1966)《记忆的艺术》；Maguire, E. A. et al. (2003) Nature Neuroscience 记忆冠军脑成像",
+                        "reverse":  "抽象推导内容不适用空间挂钩，改用逻辑链",
+                        "conflict_priority":  4
+                    },
+                    {
+                        "id":  "PSY-011",
+                        "name":  "系列位置效应",
+                        "family":  "记忆与巩固",
+                        "principle":  "回合开头与结尾的内容最容易被记住",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "一轮讲解包含多个要点",
+                        "injection":  {
+                                          "instruction":  "把最需记住的要点放在开头或结尾，中间安排次要内容",
+                                          "card_structure":  "keypoint_card -> explain_card",
+                                          "rhythm":  "一回合要点数量控制在可辨头尾的范围"
+                                      },
+                        "evidence":  "Murdock, B. B. (1962) Journal of Verbal Learning and Verbal Behavior 系列位置效应",
+                        "reverse":  "内容之间存在严格先后依赖时，不得为了位置打乱逻辑顺序",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-012",
+                        "name":  "睡眠与记忆固化",
+                        "family":  "记忆与巩固",
+                        "principle":  "睡眠参与记忆巩固，学后睡眠安排影响保持",
+                        "modes":  [
+                                      "review",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户即将结束当天学习或处于晚间时段",
+                        "injection":  {
+                                          "instruction":  "把当天重点作为睡前最后一轮复习，并提示不要熬夜加量",
+                                          "card_structure":  "review_card -> verdict_card",
+                                          "rhythm":  "晚间只做薄轮，不做高强度新课"
+                                      },
+                        "evidence":  "Rasch, B. & Born, J. (2013) Physiological Reviews 睡眠与记忆；Walker, M. (2017)《为什么我们要睡觉》",
+                        "reverse":  "不得把熬夜加量当作提分策略，与不制造焦虑的边界冲突",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-013",
+                        "name":  "提取失败后的纠错",
+                        "family":  "记忆与巩固",
+                        "principle":  "提取失败后立刻给出正确答案并再测一次，收益大于放任",
+                        "modes":  [
+                                      "review"
+                                  ],
+                        "trigger":  "复习卡答错",
+                        "injection":  {
+                                          "instruction":  "先给正确答案与一句解析，随后在同一轮回再测一次",
+                                          "card_structure":  "review_card -> verdict_card -> review_card",
+                                          "rhythm":  "错项当轮内补测一次，不拖到下一轮"
+                                      },
+                        "evidence":  "Kornell, N., Hays, M. J. & Bjork, R. A. (2009) Journal of Experimental Psychology: Learning, Memory, and Cognition",
+                        "reverse":  "同一项连续答错三次以上时应回落到讲解，而非继续重测",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-014",
+                        "name":  "自评偏误与强制自测",
+                        "family":  "记忆与巩固",
+                        "principle":  "学习者常高估重读效果，需要队列强制安排自测",
+                        "modes":  [
+                                      "review"
+                                  ],
+                        "trigger":  "用户表示看过了就算会了",
+                        "injection":  {
+                                          "instruction":  "以队列为准安排自测，不依赖用户的自我感觉",
+                                          "card_structure":  "review_card -> verdict_card",
+                                          "rhythm":  "以到期队列驱动，不由用户挑内容"
+                                      },
+                        "evidence":  "Karpicke, J. D. & Roediger, H. L. (2008) Science 学习选择；Karpicke, J. D., Butler, A. C. & Roediger, H. L. (2009) Memory 重读偏误",
+                        "reverse":  "用户已明确只要看懂不求会做时，不强行安排自测",
+                        "conflict_priority":  4
+                    },
+                    {
+                        "id":  "PSY-015",
+                        "name":  "精细加工",
+                        "family":  "理解与建构",
+                        "principle":  "把新知识与已有经验、因果或用途联系起来，理解更深",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户刚接触一个新概念",
+                        "injection":  {
+                                          "instruction":  "每个概念给出一个用途或因果解释，并连到已学内容",
+                                          "card_structure":  "explain_card -> keypoint_card(compare_card)",
+                                          "rhythm":  "一次只精加工一个概念"
+                                      },
+                        "evidence":  "Craik, F. I. M. & Tulving, E. (1975) Journal of Experimental Psychology 编码特异性与加工深度",
+                        "reverse":  "时间极短的速览不展开精加工，避免拖长回合",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-016",
+                        "name":  "自我解释",
+                        "family":  "理解与建构",
+                        "principle":  "让学习者自己解释每一步为什么，效果优于被动听讲",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "讲解推进到关键步骤或推理链时",
+                        "injection":  {
+                                          "instruction":  "逐步要求用户解释该步理由，再对照标准解释",
+                                          "card_structure":  "explain_card -> quiz_card -> verdict_card",
+                                          "rhythm":  "每回合最多要求解释一次"
+                                      },
+                        "evidence":  "Chi, M. T. H., de Leeuw, N., Chiu, M.-H. & LaVancher, C. (1994) Cognitive Science 自我解释促进理解",
+                        "reverse":  "用户明确表示不理解时先回到讲解卡，不强求自我解释",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-017",
+                        "name":  "类比迁移",
+                        "family":  "理解与建构",
+                        "principle":  "用结构相似的熟悉情境帮用户抓住新情境的骨架",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "新概念与已有经验结构相似",
+                        "injection":  {
+                                          "instruction":  "给出一个结构对齐的类比，并明确指出对应关系",
+                                          "card_structure":  "explain_card -> compare_card(table_card)",
+                                          "rhythm":  "一次只用一个类比，避免类比堆叠"
+                                      },
+                        "evidence":  "Gentner, D. (1983) Cognitive Science 结构映射理论；Gick, M. L. & Holyoak, K. J. (1983) Cognitive Psychology",
+                        "reverse":  "只在表面相似时类比会误导，需明确差异边界",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-018",
+                        "name":  "正例与反例对比",
+                        "family":  "理解与建构",
+                        "principle":  "同时给正例与反例，才能划出概念的真实边界",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "概念易被套用过度或与他概念混淆",
+                        "injection":  {
+                                          "instruction":  "先给正例再给一个最近似的反例，并点明差别",
+                                          "card_structure":  "explain_card -> compare_card",
+                                          "rhythm":  "一次对比只切一个维度"
+                                      },
+                        "evidence":  "Schwartz, D. L. & Bransford, J. D. (1998) Cognition and Instruction；Rittle-Johnson, B. & Star, J. R. (2007) 对比学习",
+                        "reverse":  "反例过于极端时学不到边界，应选与正例最接近的反例",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-019",
+                        "name":  "认知负荷管理",
+                        "family":  "理解与建构",
+                        "principle":  "一次只在屏幕上放一个待加工单元，减少外在负荷",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "内容步骤多、要素密集",
+                        "injection":  {
+                                          "instruction":  "拆成单步推进，移除与当前目标无关的信息",
+                                          "card_structure":  "explain_card -> keypoint_card",
+                                          "rhythm":  "一回合一个 chunk，不并列多目标"
+                                      },
+                        "evidence":  "Sweller, J. (1988) Cognitive Science 认知负荷理论；Sweller, J., Ayres, P. & Kalyuga, S. (2011) 认知负荷理论",
+                        "reverse":  "用户已熟练、需要整体把握时，过度拆分反而增加切换成本",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-020",
+                        "name":  "工作记忆容量限制",
+                        "family":  "理解与建构",
+                        "principle":  "同时加工单元数有限，超出即失败",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户在同一条里处理多个变量或条件",
+                        "injection":  {
+                                          "instruction":  "把变量逐个固定，一次只变一个",
+                                          "card_structure":  "explain_card -> table_card",
+                                          "rhythm":  "同一回合变量不超过一个"
+                                      },
+                        "evidence":  "Cowan, N. (2001) Behavioral and Brain Sciences 工作记忆容量约四加减一",
+                        "reverse":  "低难度复习项不需要容量拆解，直接进入提取",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-021",
+                        "name":  "先行组织者与图式",
+                        "family":  "理解与建构",
+                        "principle":  "先给上位框架，后学的细节才挂得住",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "新板块第一次接触",
+                        "injection":  {
+                                          "instruction":  "先给三到七节点的骨架，再逐点填内容",
+                                          "card_structure":  "keypoint_card -> explain_card",
+                                          "rhythm":  "头一轮只搭骨架不讲细节"
+                                      },
+                        "evidence":  "Ausubel, D. P. (1960) Journal of Educational Psychology 先行组织者；Bartlett, F. C. (1932)《记忆》图式理论",
+                        "reverse":  "用户已有完整框架时，重复搭骨架会拖慢节奏",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-022",
+                        "name":  "多媒体双通道",
+                        "family":  "理解与建构",
+                        "principle":  "语词与图像分走两条通道，配合使用优于纯文字",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "内容涉及流程、机构或空间结构",
+                        "injection":  {
+                                          "instruction":  "解说与图示同步呈现，避免文字与图重复同一信息",
+                                          "card_structure":  "explain_card -> table_card",
+                                          "rhythm":  "一屏内图文各占其一，不堆叠"
+                                      },
+                        "evidence":  "Mayer, R. E. (2009)《多媒体学习》多媒体学习认知理论",
+                        "reverse":  "纯文字推导内容强加图示会引入无关负荷",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-023",
+                        "name":  "概念原型与边界",
+                        "family":  "理解与建构",
+                        "principle":  "概念以原型为核心、以边界为难点，边界最需要教",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户能举例但不能判断反例",
+                        "injection":  {
+                                          "instruction":  "先给典型例子，再集中攻边界情形",
+                                          "card_structure":  "explain_card -> compare_card",
+                                          "rhythm":  "一次只处理一种边界情形"
+                                      },
+                        "evidence":  "Rosch, E. (1973) 自然类别与原型；Markman, E. M. (1989) 分类与命名",
+                        "reverse":  "没有边界争议的常识概念不必专门攻边界",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-024",
+                        "name":  "类比的局限",
+                        "family":  "理解与建构",
+                        "principle":  "类比只在结构对齐时成立，错配会稳稳带入错误",
+                        "modes":  [
+                                      "deep"
+                                  ],
+                        "trigger":  "用户已经用类比建立了理解",
+                        "injection":  {
+                                          "instruction":  "主动指出类比的失效边界与对应错位点",
+                                          "card_structure":  "explain_card -> compare_card -> quiz_card",
+                                          "rhythm":  "讲完类比后必须补一次边界说明"
+                                      },
+                        "evidence":  "Gentner, D. & Holyoak, K. J. (1997) American Psychologist 类比推理；Thagard, P. (1992)《概念革命》",
+                        "reverse":  "初学者尚未建立正面类比时，先建立类比再谈局限",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-025",
+                        "name":  "解释深度错觉",
+                        "family":  "理解与建构",
+                        "principle":  "人常高估自己对机制的理解深度，需要被要求讲出来",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户说这个我懂",
+                        "injection":  {
+                                          "instruction":  "要求用户把机制讲一遍或画出流程，暴露缺口",
+                                          "card_structure":  "explain_card -> quiz_card -> verdict_card",
+                                          "rhythm":  "每轮最多做一次深度自检"
+                                      },
+                        "evidence":  "Rozenblit, L. & Keil, F. (2002) Cognitive Science 解释深度错觉",
+                        "reverse":  "用户明确只要速览时不做深度自检，避免造成压力",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-026",
+                        "name":  "前概念纠正",
+                        "family":  "理解与建构",
+                        "principle":  "错误前概念不先处理，新讲解会被旧框架吸收",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户对某结论有自发而错误的直觉",
+                        "injection":  {
+                                          "instruction":  "先让用户说出自己的直觉，再指出其失效的具体情形",
+                                          "card_structure":  "explain_card -> compare_card -> quiz_card",
+                                          "rhythm":  "一次只处理一个前概念"
+                                      },
+                        "evidence":  "Posner, G. J., Strike, K. A., Hewson, P. W. & Gertzog, W. A. (1982) Science Education 概念转变理论；Vosniadou, S. (1994) Learning and Instruction",
+                        "reverse":  "用户并无错误直觉时，不必强行制造前概念冲突",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-027",
+                        "name":  "概念图与知识组织",
+                        "family":  "理解与建构",
+                        "principle":  "把知识画成有连线的结构，比线性罗列更利于迁移",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "一个板块学完需要收口",
+                        "injection":  {
+                                          "instruction":  "让用户补全节点间连线与标签，再给出标准结构",
+                                          "card_structure":  "map_card -> explain_card",
+                                          "rhythm":  "一张图节点控制在可读范围"
+                                      },
+                        "evidence":  "Novak, J. D. & Gowin, D. B. (1984)《学会学习》概念图；Nesbit, J. C. & Adesope, O. O. (2006) Review of Educational Research 概念图元分析",
+                        "reverse":  "节点过多时先分组，不强行一图吞下整个学科",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-028",
+                        "name":  "最近发展区与支架",
+                        "family":  "理解与建构",
+                        "principle":  "在略高于当前水平的区间教学，并随能力提升撤走支架",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户能独立完成部分但卡在一步",
+                        "injection":  {
+                                          "instruction":  "先给提示与半成品，答对后逐步撤去提示",
+                                          "card_structure":  "explain_card -> quiz_card -> verdict_card",
+                                          "rhythm":  "支架一次撤一档"
+                                      },
+                        "evidence":  "Vygotsky, L. S. (1978)《社会中的心智》最近发展区；Wood, D., Bruner, J. S. & Ross, G. (1976) Journal of Child Psychology and Psychiatry 支架",
+                        "reverse":  "用户完全无基础时先降到当前起点，不在空白区搭支架",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-029",
+                        "name":  "交错练习",
+                        "family":  "练习与迁移",
+                        "principle":  "把不同类型的题混在一轮里，先判断题该用哪一招",
+                        "modes":  [
+                                      "deep",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户已分别练过各类题，开始混着做",
+                        "injection":  {
+                                          "instruction":  "一轮混入不少于三类题，先让用户判断用哪个方法",
+                                          "card_structure":  "quiz_card -> verdict_card(map_card)",
+                                          "rhythm":  "一轮内题型混搭，不按类型分块"
+                                      },
+                        "evidence":  "Rohrer, D. & Taylor, K. (2007) Instructional Science 交错练习；Taylor, K. & Rohrer, D. (2010) Journal of Experimental Psychology: Learning, Memory, and Cognition",
+                        "reverse":  "各题型都还没学会时用交错会变成乱猜，先分类型练熟",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-030",
+                        "name":  "刻意练习",
+                        "family":  "练习与迁移",
+                        "principle":  "针对薄弱点做有反馈的重复，并逐步加难",
+                        "modes":  [
+                                      "deep",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户已能完成基础题但某一步反复出错",
+                        "injection":  {
+                                          "instruction":  "锁定一个薄弱动作，集中练并每次给反馈",
+                                          "card_structure":  "quiz_card -> verdict_card(error_cause_card)",
+                                          "rhythm":  "一次只锁定一个薄弱点"
+                                      },
+                        "evidence":  "Ericsson, K. A., Krampe, R. T. & Tesch-Römer, C. (1993) Psychological Review 刻意练习",
+                        "reverse":  "重复练已会的部分不产生收益，需先定位薄弱点",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-031",
+                        "name":  "变式训练",
+                        "family":  "练习与迁移",
+                        "principle":  "同一原理换表面、换问法，检验是否真的掌握",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户刚学会一个典型题型",
+                        "injection":  {
+                                          "instruction":  "给出表面不同、结构相同的两到三题",
+                                          "card_structure":  "quiz_card -> verdict_card -> compare_card",
+                                          "rhythm":  "一次变一个维度"
+                                      },
+                        "evidence":  "Magill, R. A. & Hall, K. G. (1990) Human Movement Science 情境干扰综述；Paas, F. & van Merrienboer, J. J. G. (1994) Journal of Educational Psychology 变式与迁移",
+                        "reverse":  "变式差异过大会被当成新知识点，需明示共同结构",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-032",
+                        "name":  "即时反馈",
+                        "family":  "练习与迁移",
+                        "principle":  "练完立刻给对错与原因，修正才发生在当轮",
+                        "modes":  [
+                                      "standard",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户提交答案之后",
+                        "injection":  {
+                                          "instruction":  "给判题与一句原因，指明错在哪一步",
+                                          "card_structure":  "quiz_card -> verdict_card",
+                                          "rhythm":  "当轮反馈，不积压到下一轮"
+                                      },
+                        "evidence":  "Kluger, A. N. & DeNisi, A. (1996) Psychological Bulletin 反馈干预的效应；Hattie, J. & Timperley, H. (2007) Review of Educational Research 反馈的力量",
+                        "reverse":  "反馈只给分数不含原因时效果差，需给归因信息",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-033",
+                        "name":  "示例退隐",
+                        "family":  "练习与迁移",
+                        "principle":  "从完整示例逐步撤掉步骤，最后独立完成",
+                        "modes":  [
+                                      "standard"
+                                  ],
+                        "trigger":  "用户能看懂示例但独立做时卡住",
+                        "injection":  {
+                                          "instruction":  "先给完整示例，再给缺步示例，最后给空题",
+                                          "card_structure":  "explain_card -> quiz_card",
+                                          "rhythm":  "一次只撤一步"
+                                      },
+                        "evidence":  "Renkl, A. & Atkinson, R. K. (2003) Educational Psychologist 示例退隐；Atkinson, R. K. et al. (2000) Review of Educational Research",
+                        "reverse":  "撤步过快会造成连续失败，需按答对情况退",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-034",
+                        "name":  "完整示例效应",
+                        "family":  "练习与迁移",
+                        "principle":  "新手先读完整示例比一上来就做题更省负荷",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户初学一种解题格式",
+                        "injection":  {
+                                          "instruction":  "先给一个完整示例并标注每步依据，再给同类题",
+                                          "card_structure":  "explain_card -> quiz_card",
+                                          "rhythm":  "入门阶段先示例后练习"
+                                      },
+                        "evidence":  "Sweller, J. & Cooper, G. A. (1985) Cognition and Instruction 示例效应",
+                        "reverse":  "已具备解题经验后仍看示例会浪费时间，改直接练",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-035",
+                        "name":  "近迁移与远迁移",
+                        "family":  "练习与迁移",
+                        "principle":  "近迁移易得、远迁移难得，需要专门设计新情境",
+                        "modes":  [
+                                      "deep",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户已掌握本题型的基本形式",
+                        "injection":  {
+                                          "instruction":  "掌握近迁移后补一道换情境题，指出保持不变的结构",
+                                          "card_structure":  "quiz_card -> verdict_card -> compare_card",
+                                          "rhythm":  "一类题型内先近后远，不跳步"
+                                      },
+                        "evidence":  "Barnett, S. M. & Ceci, S. J. (2002) Psychological Bulletin 迁移的分类；Perkins, D. N. & Salomon, G. (1992) Educational Psychologist 迁移理论",
+                        "reverse":  "远迁移题连续两次失败时退回近迁移，不硬爬",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-036",
+                        "name":  "检索练习的迁移",
+                        "family":  "练习与迁移",
+                        "principle":  "用测验练习获得的知识比重复学习更容易迁移",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户需要把已学内容用到新题",
+                        "injection":  {
+                                          "instruction":  "以题卡形式复测旧知识，再接新情境题",
+                                          "card_structure":  "quiz_card -> verdict_card",
+                                          "rhythm":  "先复测旧知再进入新情境"
+                                      },
+                        "evidence":  "Butler, A. C. (2010) Journal of Experimental Psychology: Learning, Memory, and Cognition 重复测验促进迁移",
+                        "reverse":  "旧知尚未稳固时先复习，不直接上迁移题",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-037",
+                        "name":  "专长逆转效应",
+                        "family":  "练习与迁移",
+                        "principle":  "给高手看的详细示例会拖慢高手",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户对当前内容已相当熟练",
+                        "injection":  {
+                                          "instruction":  "减少解释与示例，直接进入练习与变式",
+                                          "card_structure":  "explain_card -> quiz_card",
+                                          "rhythm":  "熟练后撤走示例与长解释"
+                                      },
+                        "evidence":  "Kalyuga, S., Chandler, P., Tuovinen, J. & Sweller, J. (2001) Journal of Educational Psychology；Kalyuga, S., Ayres, P., Chandler, P. & Sweller, J. (2003) Educational Psychologist 专长逆转效应",
+                        "reverse":  "新手没有这个效应，不能对新手撤支架",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-038",
+                        "name":  "题组与混合题组",
+                        "family":  "练习与迁移",
+                        "principle":  "按类型集中练利于入门，混合练利于保持与判别",
+                        "modes":  [
+                                      "standard",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户已过入门阶段",
+                        "injection":  {
+                                          "instruction":  "先按类型集中练，再混合练并打乱顺序",
+                                          "card_structure":  "quiz_card -> verdict_card",
+                                          "rhythm":  "入门集中、巩固混合"
+                                      },
+                        "evidence":  "Rohrer, D., Dedrick, R. F. & Stershic, S. (2015) Journal of Educational Psychology 题组与交错练习",
+                        "reverse":  "入门第一天就混练会抬高启动负担",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-039",
+                        "name":  "延迟反馈",
+                        "family":  "练习与迁移",
+                        "principle":  "把反馈稍作延后，有时比当轮反馈更能促发自我监控",
+                        "modes":  [
+                                      "boost",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户已能容忍短期不确定",
+                        "injection":  {
+                                          "instruction":  "答完先自评，再给正确答案与原因",
+                                          "card_structure":  "quiz_card -> verdict_card(progress_card)",
+                                          "rhythm":  "先自评后反馈，一轮一次"
+                                      },
+                        "evidence":  "Butler, A. C., Karpicke, J. D. & Roediger, H. L. (2007) Journal of Experimental Psychology: Learning, Memory, and Cognition 反馈类型与时机",
+                        "reverse":  "新手在无反馈下会固着错误，不延迟",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-040",
+                        "name":  "流利度与自动化",
+                        "family":  "练习与迁移",
+                        "principle":  "基础动作练到不假思索，才能腾出注意力处理难点",
+                        "modes":  [
+                                      "quick",
+                                      "review"
+                                  ],
+                        "trigger":  "用户能正确但很慢",
+                        "injection":  {
+                                          "instruction":  "对基础步骤做短轮重复，追求正确且稳定",
+                                          "card_structure":  "review_card -> verdict_card",
+                                          "rhythm":  "短轮高频，只练基础步骤"
+                                      },
+                        "evidence":  "Shiffrin, R. M. & Schneider, W. (1977) Psychological Review 自动化与控制加工；Logan, G. D. (1988) Psychological Review 实例理论",
+                        "reverse":  "需要深度推理的环节不追求自动化，避免养成套路的坏习惯",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-041",
+                        "name":  "掌握学习",
+                        "family":  "练习与迁移",
+                        "principle":  "每一小单元达标后再前进，避免带病推进",
+                        "modes":  [
+                                      "standard",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户在某单元反复出错",
+                        "injection":  {
+                                          "instruction":  "每单元设达标线，未达标先补漏再进入下一单元",
+                                          "card_structure":  "quiz_card -> verdict_card -> progress_card",
+                                          "rhythm":  "单元内达标即走，不追求题量"
+                                      },
+                        "evidence":  "Bloom, B. S. (1984) Educational Researcher 两个西格玛问题；Kulik, C.-L. C., Kulik, J. A. & Bangert-Drowns, R. L. (1990) Review of Educational Research 掌握学习元分析",
+                        "reverse":  "达标线设得过高会让进度停滞，需按实际水平定",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-042",
+                        "name":  "生产性失败",
+                        "family":  "练习与迁移",
+                        "principle":  "先尝试后教学比先教学后练习学得更稳",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "内容有可试错的结构",
+                        "injection":  {
+                                          "instruction":  "先让用户试一次，失败后给结构化讲解而非直接给答案",
+                                          "card_structure":  "quiz_card -> explain_card -> quiz_card",
+                                          "rhythm":  "一次试错，失败即转入讲解"
+                                      },
+                        "evidence":  "Kapur, M. (2008) 生产性失败；Kapur, M. & Bielaczyc, K. (2012) Journal of the Learning Sciences",
+                        "reverse":  "基础概念完全空白时试错会变成乱猜，先给最小讲解",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-043",
+                        "name":  "计划-监控-反思",
+                        "family":  "元认知",
+                        "principle":  "学前三步走：先定计划、边学边监控、结束即反思",
+                        "modes":  [
+                                      "standard",
+                                      "deep",
+                                      "boost"
+                                  ],
+                        "trigger":  "一个学习回合开始或结束时",
+                        "injection":  {
+                                          "instruction":  "开场给一句目标，过程中提示自检，收尾要求一句反思",
+                                          "card_structure":  "progress_card -> keypoint_card(verdict_card)",
+                                          "rhythm":  "每回合各做一次计划与反思"
+                                      },
+                        "evidence":  "Flavell, J. H. (1979) American Psychologist 元认知；Schraw, G. & Moshman, D. (1995) Educational Psychology Review 元认知理论",
+                        "reverse":  "时间极短的速览回合只做计划，不做完整反思",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-044",
+                        "name":  "学习判断错觉",
+                        "family":  "元认知",
+                        "principle":  "边学边觉得会了，往往高估；需要在延迟后再判断",
+                        "modes":  [
+                                      "review",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户在同一轮里连续判断自己会了",
+                        "injection":  {
+                                          "instruction":  "把自评推到一轮之后再做，或改用题卡实测",
+                                          "card_structure":  "review_card -> verdict_card",
+                                          "rhythm":  "自评与实测分离"
+                                      },
+                        "evidence":  "Koriat, A. & Bjork, R. A. (2005) Journal of Experimental Psychology: Learning, Memory, and Cognition 元认知错觉；Nelson, T. O. & Dunlosky, J. (1991) 学习判断",
+                        "reverse":  "即时自评仅作参考，不作掌握度依据",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-045",
+                        "name":  "延迟判断与校准",
+                        "family":  "元认知",
+                        "principle":  "延迟一段时间再做判断，校准度明显提升",
+                        "modes":  [
+                                      "review",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户需要估计自己是否真的掌握",
+                        "injection":  {
+                                          "instruction":  "在一轮或一天之后再做判断，并与实测结果对照",
+                                          "card_structure":  "review_card -> verdict_card -> progress_card",
+                                          "rhythm":  "判断与实测成对出现"
+                                      },
+                        "evidence":  "Rhodes, M. G. & Tauber, S. K. (2011) Psychological Bulletin 延迟学习判断元分析",
+                        "reverse":  "尚未稳固的新内容不要求做延迟判断",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-046",
+                        "name":  "错因归因",
+                        "family":  "元认知",
+                        "principle":  "把错误归到具体原因上，才知道下一步补哪里",
+                        "modes":  [
+                                      "boost",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户答错或反复在同一处失分",
+                        "injection":  {
+                                          "instruction":  "按不会、会用错、审题、计算四类归因并写错因",
+                                          "card_structure":  "verdict_card -> error_cause_card -> review_card",
+                                          "rhythm":  "每次错题都写一句错因"
+                                      },
+                        "evidence":  "Weiner, B. (1985) Psychological Review 归因理论；Hattie, J. & Timperley, H. (2007) Review of Educational Research",
+                        "reverse":  "归因到能力上会打击动机，只归因到策略与知识缺口",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-047",
+                        "name":  "费曼式自检",
+                        "family":  "元认知",
+                        "principle":  "讲给别人听，讲不通的地方就是没懂的地方",
+                        "modes":  [
+                                      "deep",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户声称已理解某机制",
+                        "injection":  {
+                                          "instruction":  "要求把机制讲给一个完全不懂的人听，标出卡壳处",
+                                          "card_structure":  "explain_card -> quiz_card -> verdict_card",
+                                          "rhythm":  "一轮一次，只讲一个机制"
+                                      },
+                        "evidence":  "Chi, M. T. H., de Leeuw, N., Chiu, M.-H. & LaVancher, C. (1994) Cognitive Science 自我解释",
+                        "reverse":  "只做复述而不暴露卡壳点，收益有限",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-048",
+                        "name":  "元认知提示",
+                        "family":  "元认知",
+                        "principle":  "在关键节点给出自问清单，比放任自学更有效",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "学习推进到需要决策的节点",
+                        "injection":  {
+                                          "instruction":  "在节点处给一句自问，例如我这一步依据是什么",
+                                          "card_structure":  "explain_card -> keypoint_card",
+                                          "rhythm":  "每回合提示不超过两次"
+                                      },
+                        "evidence":  "Veenman, M. V. J., Van Hout-Wolters, B. H. A. M. & Afflerbach, P. (2006) Educational Psychology Review 元认知与学习",
+                        "reverse":  "提示过多会打断心流，需减量",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-049",
+                        "name":  "自我调节学习循环",
+                        "family":  "元认知",
+                        "principle":  "自我调节是三段循环：预思、执行、自我反思",
+                        "modes":  [
+                                      "deep",
+                                      "boost"
+                                  ],
+                        "trigger":  "多天推进同一板块",
+                        "injection":  {
+                                          "instruction":  "每阶段结束做一次循环复盘并调整下一步",
+                                          "card_structure":  "progress_card -> plan_panel",
+                                          "rhythm":  "按阶段循环，不按回合"
+                                      },
+                        "evidence":  "Zimmerman, B. J. (2002) Theory Into Practice 成为自我调节的学习者",
+                        "reverse":  "单次速览不需要完整循环，用简化版",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-050",
+                        "name":  "子目标拆解",
+                        "family":  "元认知",
+                        "principle":  "把远目标拆成近子目标，完成感与坚持度都更高",
+                        "modes":  [
+                                      "boost",
+                                      "deep"
+                                  ],
+                        "trigger":  "目标太远，用户不知道今天做什么",
+                        "injection":  {
+                                          "instruction":  "把目标拆到本周与今天可完成的一步",
+                                          "card_structure":  "plan_panel -> progress_card",
+                                          "rhythm":  "一次只拆一层"
+                                      },
+                        "evidence":  "Bandura, A. & Schunk, D. H. (1981) Journal of Personality and Social Psychology 近距离子目标与自我动机",
+                        "reverse":  "拆分粒度过细会变成流水账，需保留弹性",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-051",
+                        "name":  "反思性复盘",
+                        "family":  "元认知",
+                        "principle":  "在行动后回看一遍，能把经验变成可复用的策略",
+                        "modes":  [
+                                      "boost",
+                                      "review"
+                                  ],
+                        "trigger":  "一个阶段或一周结束时",
+                        "injection":  {
+                                          "instruction":  "按做得好的、卡住的、下次改的三栏复盘",
+                                          "card_structure":  "progress_card -> plan_panel",
+                                          "rhythm":  "每周一次，短而固定"
+                                      },
+                        "evidence":  "Schön, D. A. (1983)《反思性实践者》",
+                        "reverse":  "把复盘写成长篇检讨会打击动机，只留三栏",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-052",
+                        "name":  "已知与未知清单",
+                        "family":  "元认知",
+                        "principle":  "把已知与未知分开列出来，注意力才落到缺口上",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "进入一个板块之前或之后",
+                        "injection":  {
+                                          "instruction":  "先列自己已知的，再列不确定的，优先处理不确定项",
+                                          "card_structure":  "keypoint_card -> explain_card",
+                                          "rhythm":  "每次只列一屏"
+                                      },
+                        "evidence":  "Pressley, M. & Afflerbach, P. (1995)《阅读的言语报告》",
+                        "reverse":  "清单过长时先归类，不逐条穷举",
+                        "conflict_priority":  4
+                    },
+                    {
+                        "id":  "PSY-053",
+                        "name":  "概念转变的自我监控",
+                        "family":  "元认知",
+                        "principle":  "知道自己正在改一个旧观念，转变才稳",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户的旧直觉与新讲解冲突",
+                        "injection":  {
+                                          "instruction":  "让用户说出旧观念，再标注新观念与它的差别",
+                                          "card_structure":  "explain_card -> compare_card -> quiz_card",
+                                          "rhythm":  "一次只处理一处冲突"
+                                      },
+                        "evidence":  "Posner, G. J., Strike, K. A., Hewson, P. W. & Gertzog, W. A. (1982) Science Education 概念转变；Vosniadou, S. (1994) Learning and Instruction",
+                        "reverse":  "没有冲突时不必制造，避免无谓的认知负担",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-054",
+                        "name":  "知识缺口定位",
+                        "family":  "元认知",
+                        "principle":  "先定位缺口再补漏，比全面重学更省力",
+                        "modes":  [
+                                      "boost",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户分数或正确率停滞在某一档",
+                        "injection":  {
+                                          "instruction":  "用一次短测定位缺口，再只补缺口那几处",
+                                          "card_structure":  "diagnose_card -> plan_panel -> quiz_card",
+                                          "rhythm":  "先诊断后补漏"
+                                      },
+                        "evidence":  "Corbett, A. T. & Anderson, J. R. (1994) User Modeling and User-Adapted Interaction 知识追踪",
+                        "reverse":  "基础完全空白时缺口太多，先补主干再定位",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-055",
+                        "name":  "学习偏好与有效方法错配",
+                        "family":  "元认知",
+                        "principle":  "人偏好的学习方法常不是最有效的，需要按证据安排",
+                        "modes":  [
+                                      "quick",
+                                      "review",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户要求用自己习惯的方式学",
+                        "injection":  {
+                                          "instruction":  "按有证据的方法安排，同时说明为什么",
+                                          "card_structure":  "review_card -> verdict_card",
+                                          "rhythm":  "以队列与方法证据为准"
+                                      },
+                        "evidence":  "Dunlosky, J. et al. (2013) Psychological Science in the Public Interest 学习技术综述；Karpicke, J. D., Butler, A. C. & Roediger, H. L. (2009) Memory",
+                        "reverse":  "用户强烈抵触时先解释再调整，不强行替换",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-056",
+                        "name":  "目标设定",
+                        "family":  "动机与情绪",
+                        "principle":  "具体、可测、有期限的目标比模糊愿望更能驱动行动",
+                        "modes":  [
+                                      "boost",
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户说想提分但说不清标准",
+                        "injection":  {
+                                          "instruction":  "把目标写成可测的数值与时间点，并确认是否接受",
+                                          "card_structure":  "plan_panel -> progress_card",
+                                          "rhythm":  "一回合只定一个目标"
+                                      },
+                        "evidence":  "Locke, E. A. & Latham, G. P. (2002) American Psychologist 目标设定理论",
+                        "reverse":  "目标定得过高会造成必经失败，需按现状校准",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-057",
+                        "name":  "自我效能",
+                        "family":  "动机与情绪",
+                        "principle":  "相信自己能做成，才会真的投入",
+                        "modes":  [
+                                      "standard",
+                                      "deep",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户表示这个我学不会",
+                        "injection":  {
+                                          "instruction":  "先安排一次能成功的短任务，再逐步加难",
+                                          "card_structure":  "quiz_card -> verdict_card -> progress_card",
+                                          "rhythm":  "先易后难，确保有胜绩"
+                                      },
+                        "evidence":  "Bandura, A. (1997)《自我效能：控制的实施》",
+                        "reverse":  "用空话鼓励代替真实胜绩，不产生效能感",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-058",
+                        "name":  "成长型思维",
+                        "family":  "动机与情绪",
+                        "principle":  "把能力看成可增长的，失败就只是阶段性信息",
+                        "modes":  [
+                                      "quick",
+                                      "standard",
+                                      "deep",
+                                      "review",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户把失败归为自己笨",
+                        "injection":  {
+                                          "instruction":  "把反馈指向策略与投入方式，而不是天赋",
+                                          "card_structure":  "verdict_card -> keypoint_card",
+                                          "rhythm":  "每次反馈只谈策略"
+                                      },
+                        "evidence":  "Dweck, C. S. (2006)《思维模式》；Yeager, D. S. et al. (2019) Nature 成长型思维干预",
+                        "reverse":  "只讲口号不做策略指导，思维模式干预无效",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-059",
+                        "name":  "焦虑与表现的倒U关系",
+                        "family":  "动机与情绪",
+                        "principle":  "唤醒过低或过高都不利于表现，中等最好",
+                        "modes":  [
+                                      "boost",
+                                      "quick"
+                                  ],
+                        "trigger":  "用户明显紧张或过分松懈",
+                        "injection":  {
+                                          "instruction":  "把任务难度与要求调到中等，先做能稳住的题",
+                                          "card_structure":  "diagnose_card -> quiz_card",
+                                          "rhythm":  "先稳后冲，不加码施压"
+                                      },
+                        "evidence":  "Yerkes, R. M. & Dodson, J. D. (1908) Journal of Comparative Neurology and Psychology；Broadhurst, P. L. (1957) Journal of Experimental Psychology",
+                        "reverse":  "焦虑过高时不加时间压力与排名，先降唤醒",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-060",
+                        "name":  "心流",
+                        "family":  "动机与情绪",
+                        "principle":  "难度与能力匹配时进入心流，投入与体验最好",
+                        "modes":  [
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户进入状态且连续答对",
+                        "injection":  {
+                                          "instruction":  "维持难度在略高于当前水平，减少打断",
+                                          "card_structure":  "quiz_card -> verdict_card",
+                                          "rhythm":  "减少提示与打断"
+                                      },
+                        "evidence":  "Csikszentmihalyi, M. (1990)《心流》",
+                        "reverse":  "心流状态下不插入长段讲解，避免打断",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-061",
+                        "name":  "归因方式",
+                        "family":  "动机与情绪",
+                        "principle":  "归到可控的策略上，人会更愿意再试",
+                        "modes":  [
+                                      "boost",
+                                      "standard",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户反复失败并想放弃",
+                        "injection":  {
+                                          "instruction":  "把失败拆成可控与不可控，只对可控项给动作",
+                                          "card_structure":  "verdict_card -> error_cause_card -> plan_panel",
+                                          "rhythm":  "一次只改一个可控项"
+                                      },
+                        "evidence":  "Weiner, B. (1985) Psychological Review 归因理论",
+                        "reverse":  "把失败归到不可控项上会削弱行动意愿",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-062",
+                        "name":  "自我决定理论",
+                        "family":  "动机与情绪",
+                        "principle":  "自主、胜任、关联三者被满足，内在动机才稳",
+                        "modes":  [
+                                      "quick",
+                                      "standard",
+                                      "deep",
+                                      "review",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户对学习安排有抵触",
+                        "injection":  {
+                                          "instruction":  "给可选项与理由，保留用户的选择权",
+                                          "card_structure":  "plan_panel -> keypoint_card",
+                                          "rhythm":  "让用户至少选一次"
+                                      },
+                        "evidence":  "Deci, E. L. & Ryan, R. M. (2000) American Psychologist；Ryan, R. M. & Deci, E. L. (2000) American Psychologist 自我决定理论",
+                        "reverse":  "全部由系统指定会削弱自主感，需留选择",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-063",
+                        "name":  "外部奖励与内在动机",
+                        "family":  "动机与情绪",
+                        "principle":  "控制式的外部奖励会削弱内在动机，需慎用",
+                        "modes":  [
+                                      "quick",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户本来就有兴趣，准备加奖励机制",
+                        "injection":  {
+                                          "instruction":  "把奖励改为信息性反馈，而非控制性条件",
+                                          "card_structure":  "verdict_card -> progress_card",
+                                          "rhythm":  "奖励只作反馈，不作交换条件"
+                                      },
+                        "evidence":  "Deci, E. L., Koestner, R. & Ryan, R. M. (1999) Psychological Bulletin 外在奖励与内在动机元分析",
+                        "reverse":  "用户毫无兴趣的入门阶段，可用短期奖励起步",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-064",
+                        "name":  "进度可见与微成功",
+                        "family":  "动机与情绪",
+                        "principle":  "看见自己推进，是维持投入最强的日常动力",
+                        "modes":  [
+                                      "boost",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户已学多天但感觉不到变化",
+                        "injection":  {
+                                          "instruction":  "把进度显式给出，并标出今天完成的一小步",
+                                          "card_structure":  "progress_card -> plan_panel",
+                                          "rhythm":  "每天给一次可见进度"
+                                      },
+                        "evidence":  "Amabile, T. M. & Kramer, S. J. (2011)《进步原理》",
+                        "reverse":  "只报总量不进度的展示，激励作用有限",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-065",
+                        "name":  "考试焦虑调节",
+                        "family":  "动机与情绪",
+                        "principle":  "考前焦虑影响提取，需要先把身体调到可用状态",
+                        "modes":  [
+                                      "boost"
+                                  ],
+                        "trigger":  "用户考前出现明显紧张与失眠",
+                        "injection":  {
+                                          "instruction":  "给呼吸与放松的具体步骤，并把任务降到可完成的一小步",
+                                          "card_structure":  "diagnose_card -> plan_panel",
+                                          "rhythm":  "考前几天只做稳住状态的动作"
+                                      },
+                        "evidence":  "Zeidner, M. (1998)《考试焦虑》；Hembree, R. (1988) Review of Educational Research 考试焦虑元分析",
+                        "reverse":  "不把紧张描述成缺点，也不做施压式动员",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-066",
+                        "name":  "期望效应与不作承诺",
+                        "family":  "动机与情绪",
+                        "principle":  "期望会影响表现，但不等于承诺必达",
+                        "modes":  [
+                                      "boost",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户要求保证提多少分",
+                        "injection":  {
+                                          "instruction":  "把期望写成可验证的过程目标，明确不承诺结果",
+                                          "card_structure":  "plan_panel -> progress_card",
+                                          "rhythm":  "只承诺过程动作，不承诺分数"
+                                      },
+                        "evidence":  "Rosenthal, R. & Jacobson, L. (1968)《课堂中的皮格马利翁》期望效应；契约 §11 R-C7 禁止承诺性话术",
+                        "reverse":  "禁止把提分包装成包过或必提多少分",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-067",
+                        "name":  "情绪唤醒与记忆",
+                        "family":  "动机与情绪",
+                        "principle":  "适度情绪唤醒强化记忆，过强则干扰提取",
+                        "modes":  [
+                                      "review",
+                                      "standard"
+                                  ],
+                        "trigger":  "内容有真实情境且用户情绪平稳",
+                        "injection":  {
+                                          "instruction":  "用真实情境与适度紧张度帮助记忆，随后做提取",
+                                          "card_structure":  "explain_card -> review_card -> verdict_card",
+                                          "rhythm":  "唤醒适度即可，不做高强度施压"
+                                      },
+                        "evidence":  "Cahill, L. & McGaugh, J. L. (1998) 情绪唤醒与记忆巩固；McGaugh, J. L. (2004) Annual Review of Neuroscience",
+                        "reverse":  "焦虑过高时不依赖情绪唤醒做记忆，先降唤醒",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-068",
+                        "name":  "失败后的自我关怀",
+                        "family":  "动机与情绪",
+                        "principle":  "对自己温和而非苛责，恢复得更快也更能坚持",
+                        "modes":  [
+                                      "boost",
+                                      "review",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户一次明显失败后情绪低落",
+                        "injection":  {
+                                          "instruction":  "先承认挫败，再给一个明天可完成的小动作",
+                                          "card_structure":  "verdict_card -> progress_card -> plan_panel",
+                                          "rhythm":  "失败后不做长篇自我批判"
+                                      },
+                        "evidence":  "Neff, K. D. (2003) Self and Identity 自我关怀",
+                        "reverse":  "自我关怀不等于放过问题，仍需给出下一步动作",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-069",
+                        "name":  "启动摩擦最小化",
+                        "family":  "习惯与节奏",
+                        "principle":  "把开始的门槛降到极低，行动才容易发生",
+                        "modes":  [
+                                      "quick",
+                                      "review",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户拖着不开始或迟迟不打开任务",
+                        "injection":  {
+                                          "instruction":  "把第一步缩到几分钟可完成并明确第一步动作",
+                                          "card_structure":  "keypoint_card -> quiz_card",
+                                          "rhythm":  "开头只给一个最小动作"
+                                      },
+                        "evidence":  "Fogg, B. J. (2019)《Tiny Habits》；Wood, W. & Neal, D. T. (2007) Psychological Review 习惯与情境",
+                        "reverse":  "门槛过低会变成敷衍，需在启动后立刻递进",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-070",
+                        "name":  "番茄节奏",
+                        "family":  "习惯与节奏",
+                        "principle":  "短时段专注加短暂休息，能维持较长时间的注意",
+                        "modes":  [
+                                      "standard",
+                                      "deep",
+                                      "review"
+                                  ],
+                        "trigger":  "用户长时间连续学习并明显走神",
+                        "injection":  {
+                                          "instruction":  "把学习切成若干短时段，段间留短休息",
+                                          "card_structure":  "progress_card -> keypoint_card",
+                                          "rhythm":  "一回合一个时段，段间必须休息"
+                                      },
+                        "evidence":  "Cirillo, F. (2006)《番茄工作法》；Ariga, A. & Lleras, A. (2011) Cognition 短暂休息与持续注意",
+                        "reverse":  "进入心流的深度回合不强行打断，可延长单段",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-071",
+                        "name":  "微习惯",
+                        "family":  "习惯与节奏",
+                        "principle":  "把行为缩到小到不可能失败，靠累积建立习惯",
+                        "modes":  [
+                                      "review",
+                                      "boost"
+                                  ],
+                        "trigger":  "用户多次立志后中断",
+                        "injection":  {
+                                          "instruction":  "把目标缩到日常最低量，先连续做起来",
+                                          "card_structure":  "plan_panel -> progress_card",
+                                          "rhythm":  "以最低量起步，稳定后再加量"
+                                      },
+                        "evidence":  "Clear, J. (2018)《原子习惯》；Fogg, B. J. (2019)《Tiny Habits》；Guise, S. (2013)《Mini Habits》",
+                        "reverse":  "长期只做最低量会停滞，需按稳定度提升",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-072",
+                        "name":  "中断后恢复",
+                        "family":  "习惯与节奏",
+                        "principle":  "漏掉一次不影响长期习惯，关键是尽快回到轨道",
+                        "modes":  [
+                                      "review",
+                                      "quick"
+                                  ],
+                        "trigger":  "用户因中断数天而产生放弃念头",
+                        "injection":  {
+                                          "instruction":  "明确漏一次不毁掉进度，直接安排今天的最小一轮",
+                                          "card_structure":  "progress_card -> review_card",
+                                          "rhythm":  "恢复轮从最小量开始"
+                                      },
+                        "evidence":  "Lally, P., van Jaarsveld, C. H. M., Potts, H. W. W. & Wardle, J. (2010) European Journal of Social Psychology 习惯形成需要多久",
+                        "reverse":  "不得用连续打卡天数制造羞耻感",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-073",
+                        "name":  "习惯回路",
+                        "family":  "习惯与节奏",
+                        "principle":  "习惯由线索、行为、结果三环构成，改习惯要改线索",
+                        "modes":  [
+                                      "boost",
+                                      "review"
+                                  ],
+                        "trigger":  "用户想建立稳定的每日学习动作",
+                        "injection":  {
+                                          "instruction":  "把线索绑定到既有日常动作，并立刻给结果反馈",
+                                          "card_structure":  "plan_panel -> progress_card",
+                                          "rhythm":  "固定线索，一次只加一个习惯"
+                                      },
+                        "evidence":  "Duhigg, C. (2012)《习惯的力量》；Wood, W. & Neal, D. T. (2007) Psychological Review",
+                        "reverse":  "同时加多个新习惯会让线索互相干扰",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-074",
+                        "name":  "环境设计",
+                        "family":  "习惯与节奏",
+                        "principle":  "把环境改到让正确动作更容易、错误动作更费力",
+                        "modes":  [
+                                      "standard",
+                                      "review"
+                                  ],
+                        "trigger":  "用户总是被手机或环境打断",
+                        "injection":  {
+                                          "instruction":  "建议把学习材料放在手边、把干扰源移开",
+                                          "card_structure":  "keypoint_card -> plan_panel",
+                                          "rhythm":  "一次只改一处环境"
+                                      },
+                        "evidence":  "Wood, W. & Neal, D. T. (2007) Psychological Review 习惯与情境；Thaler, R. H. & Sunstein, C. R. (2008)《助推》",
+                        "reverse":  "只靠意志力而环境不变，效果不稳定",
+                        "conflict_priority":  4
+                    },
+                    {
+                        "id":  "PSY-075",
+                        "name":  "执行意图与固定时段",
+                        "family":  "习惯与节奏",
+                        "principle":  "把动作写成若遇某情境则做某事，执行率明显提升",
+                        "modes":  [
+                                      "boost",
+                                      "standard"
+                                  ],
+                        "trigger":  "用户知道要学但总找不到时间",
+                        "injection":  {
+                                          "instruction":  "给出具体的若遇情境则做某事的句子，并固定时段",
+                                          "card_structure":  "plan_panel -> progress_card",
+                                          "rhythm":  "一次只加一条执行意图"
+                                      },
+                        "evidence":  "Gollwitzer, P. M. (1999) American Psychologist 执行意图",
+                        "reverse":  "情境描述过泛（如以后）时执行意图无效",
+                        "conflict_priority":  1
+                    },
+                    {
+                        "id":  "PSY-076",
+                        "name":  "目标梯度与连续性",
+                        "family":  "习惯与节奏",
+                        "principle":  "越接近目标越有动力，把进度可视化可加速收尾",
+                        "modes":  [
+                                      "boost",
+                                      "review"
+                                  ],
+                        "trigger":  "用户在长期任务后段动力下降",
+                        "injection":  {
+                                          "instruction":  "把剩余量可视化，并给出收尾清单",
+                                          "card_structure":  "progress_card -> plan_panel",
+                                          "rhythm":  "收尾阶段每天给一次剩余量"
+                                      },
+                        "evidence":  "Hull, C. L. (1932) 目标梯度假设；Kivetz, R., Urminsky, O. & Zheng, Y. (2006) Journal of Marketing Research 目标梯度效应",
+                        "reverse":  "用虚假进度制造紧迫感会变成施压",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-077",
+                        "name":  "注意力与疲劳周期",
+                        "family":  "习惯与节奏",
+                        "principle":  "注意资源有限，长时间高强度后收益递减",
+                        "modes":  [
+                                      "standard",
+                                      "deep",
+                                      "quick"
+                                  ],
+                        "trigger":  "用户连续学习很久且效率下降",
+                        "injection":  {
+                                          "instruction":  "到收益递减点就换任务类型或停下来",
+                                          "card_structure":  "progress_card -> quiz_card",
+                                          "rhythm":  "一轮内不反复高强度"
+                                      },
+                        "evidence":  "Kahneman, D. (1973)《注意与努力》",
+                        "reverse":  "在关键冲刺期盲目延长时长而不换挡，收益为负",
+                        "conflict_priority":  3
+                    },
+                    {
+                        "id":  "PSY-078",
+                        "name":  "经验学习复盘循环",
+                        "family":  "习惯与节奏",
+                        "principle":  "经验加反思才成规律：做、看、想、再试",
+                        "modes":  [
+                                      "boost",
+                                      "deep"
+                                  ],
+                        "trigger":  "用户做了很多题但总结不出规律",
+                        "injection":  {
+                                          "instruction":  "一轮练完做一次四步短复盘，并定下一次的动作",
+                                          "card_structure":  "progress_card -> map_card",
+                                          "rhythm":  "每轮一次短复盘"
+                                      },
+                        "evidence":  "Kolb, D. A. (1984)《体验学习》",
+                        "reverse":  "只做不复盘会重复同样的错，只复盘不做会停在空想",
+                        "conflict_priority":  2
+                    },
+                    {
+                        "id":  "PSY-079",
+                        "name":  "认知卸载与外部队列",
+                        "family":  "习惯与节奏",
+                        "principle":  "把待办与记忆负担外化到系统上，注意力留给学习",
+                        "modes":  [
+                                      "review",
+                                      "quick"
+                                  ],
+                        "trigger":  "用户靠脑子记待办导致焦虑或遗漏",
+                        "injection":  {
+                                          "instruction":  "由系统维护到期队列与待办，用户只需按队列走",
+                                          "card_structure":  "review_card -> progress_card",
+                                          "rhythm":  "队列由系统排出，用户按序执行"
+                                      },
+                        "evidence":  "Risko, E. F. & Gilbert, S. J. (2016) Trends in Cognitive Sciences 认知卸载",
+                        "reverse":  "外化不能替代学习本身，仍需真实提取",
+                        "conflict_priority":  2
+                    }
+                ]
+}
