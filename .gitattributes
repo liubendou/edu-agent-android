@@ -1,0 +1,7 @@
+# Normalize EOL to LF for all text files, in both the repository and the working tree.
+# Prevents core.autocrlf=true from turning checked-out text files into CRLF
+# (which would break the "assets/** end-of-line must be LF" assertions and the LF/BOM discipline).
+* text=auto eol=lf
+
+# Binary files: never apply EOL conversion.
+*.jar binary

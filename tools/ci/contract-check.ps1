@@ -1,13 +1,14 @@
-﻿<#
+<#
 .SYNOPSIS
-    本地 CI：契约校验 + 全部模块单元测试 + :app debug 构建，任一失败即非零退出。
+    Local CI: contract check + all module unit tests + :app debug build; exits nonzero on any failure.
 
 .DESCRIPTION
-    对应任务包 02 §3（tools\ci\contract-check.ps1）与 §4.2 人工检查点 #4。
-    用法：
-        .\tools\ci\contract-check.ps1                # 常规
-        .\tools\ci\contract-check.ps1 -NoBuildCache  # 强制真实执行（禁用构建缓存与增量，防假通过）
-    前置：JAVA_HOME 指向 JDK 17+；Android SDK 路径见 local.properties 的 sdk.dir。
+    Implements task package 02 section 3 (tools\ci\contract-check.ps1) and section 4.2 manual checkpoint #4.
+    Usage:
+        .\tools\ci\contract-check.ps1                 # normal
+        .\tools\ci\contract-check.ps1 -NoBuildCache   # force real execution (disable build cache and
+                                                      # incremental tasks, to avoid false passes)
+    Prerequisite: JAVA_HOME points to JDK 17+; the Android SDK path is in local.properties (sdk.dir).
 #>
 [CmdletBinding()]
 param(
@@ -16,12 +17,12 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-# 仓库根 = 本脚本所在目录（tools\ci）的上级的上级
+# Repository root = two levels up from this script's directory (tools\ci)
 $repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 Set-Location -LiteralPath $repoRoot
 
 if (-not $env:JAVA_HOME) {
-    throw 'JAVA_HOME 未设置：本工程需要 JDK 17+（Android 模块按 Java 17 编译）。'
+    throw 'JAVA_HOME is not set: this project requires JDK 17+ (Android modules compile with Java 17).'
 }
 
 $gradlew = Join-Path $repoRoot 'gradlew.bat'
@@ -48,8 +49,8 @@ foreach ($step in $steps) {
 
 Write-Host ''
 if ($failed.Count -gt 0) {
-    Write-Host "CI FAILED：$($failed -join ', ')" -ForegroundColor Red
+    Write-Host "CI FAILED: $($failed -join ', ')" -ForegroundColor Red
     exit 1
 }
-Write-Host 'CI OK：contractCheck + test + assembleDebug 全绿' -ForegroundColor Green
+Write-Host 'CI OK: contractCheck + test + assembleDebug all green' -ForegroundColor Green
 exit 0
