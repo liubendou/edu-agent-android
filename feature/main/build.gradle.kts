@@ -24,5 +24,11 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.lifecycle.runtime.compose)
 
+    // 第 6 步调试期临时入口（src/debug）：仅 debug 变体需要 ComponentActivity + setContent。
+    // 授权与删除时限见 99-记录\99-事件与例外.md；第 10 步正式挂载时随入口一并移除。
+    // core-ktx 与契约 §1 冻结版（1.19.1）对齐，避免 activity-compose 传递带入旧版 1.18.0。
+    debugImplementation(libs.androidx.activity.compose)
+    debugImplementation(libs.androidx.core.ktx)
+
     testImplementation(libs.junit)
 }

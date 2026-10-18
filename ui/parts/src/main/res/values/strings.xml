@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  文案集中处（契约 §14.2：中文只在 res/values/strings.xml，Kotlin 源码零硬编码中文）。
+  :ui:parts 自有资源（nonTransitiveRClass：不得引用 :core:design 的 R）。
+-->
+<resources>
+
+    <!-- ===== 陈列页（§12 K1.1） ===== -->
+    <string name="part_gallery_title">零件陈列</string>
+    <string name="part_gallery_subtitle">16 个零件全量渲染</string>
+    <string name="part_gallery_section_level">动效档</string>
+    <string name="part_gallery_locked">系统已关闭动画，自动进入 minimal</string>
+    <string name="part_gallery_level_full">full</string>
+    <string name="part_gallery_level_reduced">reduced</string>
+    <string name="part_gallery_level_minimal">minimal</string>
+    <string name="part_gallery_section_parts">16 个零件</string>
+    <string name="part_gallery_section_streaming">流式文本（匀速吐字）</string>
+    <string name="part_gallery_streaming_running">正在吐字，交互未启用</string>
+    <string name="part_gallery_streaming_done">吐字完成，交互已启用</string>
+    <string name="part_gallery_action_back">返回</string>
+    <string name="part_gallery_action_restart">重播入场</string>
+    <string name="part_gallery_action_replay">重播</string>
+
+    <!-- ===== 判废退化（§7 二级兜底，不做红色报错框） ===== -->
+    <string name="part_fallback_notice">这段内容暂时没法用卡片呈现，先按文字显示</string>
+    <string name="part_fallback_empty">暂无内容</string>
+
+    <!-- ===== 1 讲解卡 display_card ===== -->
+    <string name="part_explain_formula_label">公式</string>
+    <string name="part_explain_steps_label">步骤</string>
+
+    <!-- ===== 2 要点卡 ===== -->
+    <string name="part_keypoint_level_core">核心</string>
+    <string name="part_keypoint_level_key">要点</string>
+    <string name="part_keypoint_level_note">补充</string>
+
+    <!-- ===== 4 题卡 ===== -->
+    <string name="part_quiz_kind_choice">选择</string>
+    <string name="part_quiz_kind_blank">填空</string>
+    <string name="part_quiz_kind_open">主观</string>
+    <string name="part_quiz_options_label">选项</string>
+    <string name="part_quiz_answer_held">答案由端侧保管，判分后才显示</string>
+    <string name="part_quiz_explain_label">讲解</string>
+
+    <!-- ===== 5 判题卡 ===== -->
+    <string name="part_verdict_correct">答对了</string>
+    <string name="part_verdict_wrong">答错了</string>
+    <string name="part_verdict_user_answer_label">你的作答</string>
+    <string name="part_verdict_answer_label">参考答案</string>
+    <string name="part_verdict_explain_label">解析</string>
+
+    <!-- ===== 6 错因卡 ===== -->
+    <string name="part_error_cause_label">错因</string>
+    <string name="part_error_evidence_label">依据</string>
+    <string name="part_error_fix_label">纠正</string>
+
+    <!-- ===== 8 时间线卡 ===== -->
+    <string name="part_timeline_empty">暂无事件</string>
+
+    <!-- ===== 10 计划面板 ===== -->
+    <string name="part_plan_horizon_short">短期计划</string>
+    <string name="part_plan_horizon_long">长期计划</string>
+    <string name="part_plan_goals_label">目标</string>
+    <string name="part_plan_tasks_label">任务</string>
+    <string name="part_plan_done">已完成</string>
+    <string name="part_plan_undone">未完成</string>
+
+    <!-- ===== 11 进度卡 ===== -->
+    <string name="part_progress_metric_mastery">掌握度</string>
+    <string name="part_progress_metric_plan">计划进度</string>
+    <string name="part_progress_metric_score">提分</string>
+    <string name="part_progress_value_suffix">%</string>
+    <string name="part_progress_empty">暂无数据</string>
+
+    <!-- ===== 12 复习卡 ===== -->
+    <string name="part_review_due_label">到期</string>
+    <string name="part_review_reps_label">已复习</string>
+    <string name="part_review_reps_suffix">次</string>
+
+    <!-- ===== 13 诊断卡 ===== -->
+    <string name="part_diagnose_weak_label">薄弱项</string>
+    <string name="part_diagnose_score_label">得分</string>
+    <string name="part_diagnose_evidence_label">依据</string>
+
+    <!-- ===== 14 画像确认卡（必须可改可删） ===== -->
+    <string name="part_profile_title">我记住了这些</string>
+    <string name="part_profile_hint">可改可删，拒绝的不会保存</string>
+    <string name="part_profile_action_edit">修改</string>
+    <string name="part_profile_action_delete">删除</string>
+    <string name="part_profile_action_confirm">确定</string>
+    <string name="part_profile_sensitive">敏感</string>
+    <string name="part_profile_empty">还没有可确认的画像条目</string>
+
+    <!-- ===== 15 资料卡 ===== -->
+    <string name="part_material_source_photo">拍照</string>
+    <string name="part_material_source_scan">扫描</string>
+    <string name="part_material_source_upload">上传</string>
+    <string name="part_material_fields_label">识别字段</string>
+    <string name="part_material_uncertain_label">不确定项</string>
+
+    <!-- ===== 16 工具卡（R-C1/R-C2：每条结果必须有来源） ===== -->
+    <string name="part_tool_query_label">搜索词</string>
+    <string name="part_tool_source_label">来源</string>
+    <string name="part_tool_results_label">结果</string>
+    <string name="part_tool_no_source_notice">没有来源的结果不展示</string>
+</resources>

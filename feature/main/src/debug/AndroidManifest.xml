@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  第 6 步 §4.2 人工检查点 1/2 所需的**调试期临时入口**（仅 debug 变体合并进 :app）。
+
+  授权与时限见 `99-记录\99-事件与例外.md`：本入口不属正式挂载，第 10 步由 :app 接入
+  正式路由后**必须删除本文件与 PartGalleryDebugActivity**。
+
+  落点说明：放在 `:feature:main` 的 debug 源集而非 `:app`，因为契约 §2 限定
+  `:app` 只允许依赖 `:feature:main`（`:feature:main` 已允许依赖 `:ui:parts`），
+  如此即可零依赖方向违规地打开陈列页。
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="com.eduagent.feature.main.debug.PartGalleryDebugActivity"
+            android:exported="true"
+            android:label="@string/debug_part_gallery_label">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

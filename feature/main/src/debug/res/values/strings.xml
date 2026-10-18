@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 调试期临时入口的启动器名称（第 10 步正式挂载时随入口一并删除）。 -->
+    <string name="debug_part_gallery_label">零件陈列</string>
+</resources>
